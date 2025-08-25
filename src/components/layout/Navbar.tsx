@@ -1,12 +1,12 @@
 'use client';
-// components/Navbar.tsx
 import React from 'react';
 import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
+import Link from 'next/link';
 
 const Navbar: React.FC = () => {
 	return (
 		<AppBar
-			position='static'
+			position='sticky'
 			elevation={0}
 			sx={{
 				backgroundColor: 'white',
@@ -14,7 +14,6 @@ const Navbar: React.FC = () => {
 				borderBottom: '1px solid #e5e7eb', // Tailwind's border-gray-200
 			}}>
 			<Toolbar sx={{ justifyContent: 'space-between' }}>
-				{/* Left side - Logo */}
 				<Typography
 					variant='h6'
 					component='div'
@@ -22,7 +21,6 @@ const Navbar: React.FC = () => {
 					VietChill
 				</Typography>
 
-				{/* Middle - Navigation Links */}
 				<Box
 					sx={{
 						display: 'flex',
@@ -30,21 +28,11 @@ const Navbar: React.FC = () => {
 						color: 'gray',
 						fontSize: '0.95rem',
 					}}>
-					<Button sx={{ color: 'inherit', textTransform: 'none' }}>
-						Trang chủ
-					</Button>
-					<Button sx={{ color: 'inherit', textTransform: 'none' }}>
-						Danh sách phòng
-					</Button>
-					<Button sx={{ color: 'inherit', textTransform: 'none' }}>
-						Tiện ích
-					</Button>
-					<Button sx={{ color: 'inherit', textTransform: 'none' }}>
-						Liên hệ
-					</Button>
-					<Button sx={{ color: 'inherit', textTransform: 'none' }}>
-						Về chúng tôi
-					</Button>
+					<Link href={'/'}>Trang chủ</Link>
+					<Link href='/rooms'>Danh sách phòng</Link>
+					<Link href='/facilities'>Tiện ích</Link>
+					<Link href='/contact'>Liên hệ</Link>
+					<Link href='/about-us'>Về chúng tôi</Link>
 				</Box>
 
 				{/* Right side - Auth Buttons */}
