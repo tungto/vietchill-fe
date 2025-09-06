@@ -1,7 +1,9 @@
-import React from 'react';
+import HotelRoomsClient from '@/features/roomList/HotelRoomsClient';
+import { getRoomsData } from '@/lib/api/room-types';
 
-const RoomList = () => {
-	return <div>RoomList</div>;
-};
+// SSR Component
+export default async function HotelRooms() {
+	const rooms = await getRoomsData();
 
-export default RoomList;
+	return <HotelRoomsClient rooms={rooms.data} />;
+}

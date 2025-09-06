@@ -1,20 +1,17 @@
-import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
-import Navbar from '@/components/layout/Navbar';
+import Footer from '@/features/common/layout/Footer/Footer';
+import Navbar from '@/features/common/layout/Navbar/Navbar';
+import EmotionRegistry from '@/EmotionRegistry';
 import ThemeRegistry from '@/ThemeRegistry';
-import Footer from '@/components/layout/Footer';
 import { Box } from '@mui/material';
-import Banner from '@/components/layout/Banner';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+import type { Metadata } from 'next';
+import { Inter, Playfair_Display } from 'next/font/google';
+import './globals.css';
 
-const geistSans = Geist({
-	variable: '--font-geist-sans',
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const playfair = Playfair_Display({
 	subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-	variable: '--font-geist-mono',
-	subsets: ['latin'],
+	variable: '--font-playfair',
 });
 
 export const metadata: Metadata = {
@@ -42,18 +39,20 @@ export default function RootLayout({
 				/>
 			</head>
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} `}
+				id='root'
+				className={`${inter.variable} ${playfair.variable}`}
 				style={{ height: '100vh' }}>
-				<ThemeRegistry>
-					<Navbar />
-					<main>
-						<Banner />
-						<Box className='min-h-screen max-w-7xl mx-auto p-6'>
-							{children}
-						</Box>
-					</main>
-					<Footer />
-				</ThemeRegistry>
+				<EmotionRegistry>
+					<AppRouterCacheProvider options={{ enableCssLayer: true }}>
+						<ThemeRegistry>
+							<Navbar />
+							<main>
+								<Box className='min-h-[70vh]'>{children}</Box>
+							</main>
+							<Footer />
+						</ThemeRegistry>
+					</AppRouterCacheProvider>
+				</EmotionRegistry>
 			</body>
 		</html>
 	);

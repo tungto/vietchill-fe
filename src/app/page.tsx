@@ -1,21 +1,44 @@
-'use client';
-
-import HotelCard from '@/components/home/HotelCard/HotelCard';
+import Banner from '@/features/home/Banner';
+import BookingForm from '@/features/home/BookingForm/BookingForm';
+import Facilities from '@/features/home/Facilities/HomepageFacilities';
+import HomeSection from '@/features/home/HomeSection/HomeSection';
+import RoomTypes from '@/features/home/RoomTypes/RoomTypes';
+import StayInspired from '@/features/home/StayInspired';
+import Testimonials from '@/features/home/Testimonial/Testimonials';
 import { Box } from '@mui/material';
-import { hotels } from './mock';
 
 export default function Home() {
 	return (
 		<Box className='homepage'>
-			<Box className='p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-				{hotels.map((hotel) => (
-					<HotelCard
-						key={hotel.id}
-						{...hotel}
-						onBook={() => alert(`Booking ${hotel.title}`)}
-					/>
-				))}
-			</Box>
+			<Banner>
+				<BookingForm />
+			</Banner>
+			<HomeSection
+				title='Danh sách phòng'
+				cta={{ label: 'View All Destinations', href: '/rooms' }}
+				subtitle='Discover our handpicked selection of exceptional properties
+					around the world, offering unparalleled luxury and
+					unforgettable experiences.'
+				cl='bg-slate-50'>
+				<RoomTypes />
+			</HomeSection>
+			<HomeSection
+				title='Tiện ích khách sạn'
+				cta={{ label: 'View More', href: '/facilities' }}>
+				<Facilities />
+			</HomeSection>
+
+			<HomeSection
+				title='What Our Guests Say'
+				subtitle='Discover why discerning travelers consistently choose QuickStay for their exclusive and luxurious accommodations around the world.'
+				cta={{ label: 'View More', href: '/facilities' }}
+				cl='bg-slate-50'>
+				<Testimonials />
+			</HomeSection>
+
+			<HomeSection>
+				<StayInspired />
+			</HomeSection>
 		</Box>
 	);
 }
