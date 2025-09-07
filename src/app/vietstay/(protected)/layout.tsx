@@ -1,3 +1,5 @@
+import React from 'react';
+import { redirect } from 'next/navigation';
 import { requireAuth } from '@/lib/api/authGuard';
 
 export default async function ProtectedLayout({
@@ -7,9 +9,11 @@ export default async function ProtectedLayout({
 }) {
 	const profile = await requireAuth();
 
-	console.log('======');
+	if (!profile) {
+		// If somehow unauthenticated here (edge case), redirect to login
+		redirect('/vietstay/login');
+	}
 
-	// You could also wrap with a context provider if you want profile everywhere
 	return (
 		<div>
 			<header className='p-4 bg-gray-100 border-b'>

@@ -31,7 +31,7 @@ const Banner = ({ children }: { children: React.ReactNode }) => {
 
 				<div className='mt-4 mb-16'>
 					<Link
-						href='/rooms'
+						href='/vietstay/rooms'
 						className='inline-block px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-full border border-white/20 backdrop-blur-md transition-all duration-200'>
 						Explore Hotels
 					</Link>

@@ -27,7 +27,7 @@ const RoomCard = ({
 	return (
 		<div className='relative w-full max-w-sm sm:max-w-md md:max-w-lg rounded-2xl overflow-hidden bg-white text-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300'>
 			{/* Image Section */}
-			<Link className='relative block' href={`/rooms/${id}`}>
+			<Link className='relative block' href={`/vietstay/rooms/${id}`}>
 				<div className='relative w-full aspect-[16/10] overflow-hidden rounded-t-2xl rounded-b-none'>
 					<Image
 						src={`/images/rooms/${images[0].path}`}
@@ -75,7 +75,7 @@ const RoomCard = ({
 
 				<AppButton
 					label='Book Now'
-					href={`/booking-confirm?id=${id}`}
+					href={`/vietstay/booking-confirm?id=${id}`}
 				/>
 			</Box>
 		</div>

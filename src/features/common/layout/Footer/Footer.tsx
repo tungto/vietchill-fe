@@ -4,14 +4,6 @@ import FooterLinks from './FooterLinks';
 import FooterLogo from './FooterLogo';
 import NewsletterForm from './NewsletterForm';
 
-export const NAV_LINKS = [
-	{ href: '/', label: 'Trang chủ' },
-	{ href: '/rooms', label: 'Danh sách phòng' },
-	{ href: '/facilities', label: 'Tiện ích' },
-	{ href: '/contact', label: 'Liên hệ' },
-	{ href: '/about-us', label: 'Về chúng tôi' },
-];
-
 const Footer = () => {
 	return (
 		<footer className='bg-[#F6F9FC] text-gray-500/80 pt-8 px-6 md:px-16 lg:px-24 xl:px-32 pb-3'>

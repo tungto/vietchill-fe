@@ -8,7 +8,7 @@ export default async function BookingConfirmPage({
 	searchParams: { id?: string };
 }) {
 	try {
-		const { id } = searchParams;
+		const { id } = await searchParams;
 		const room = await getRoomData(id ?? '');
 
 		return (

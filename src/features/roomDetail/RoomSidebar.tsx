@@ -20,7 +20,7 @@ const RoomSidebar = ({ room }: { room: RoomType }) => (
 			</div>
 
 			<Link
-				href={`/booking-confirm?id=${room.id}`}
+				href={`/vietstay/booking-confirm?id=${room.id}`}
 				className='mt-6 w-full py-3 rounded-xl bg-orange-500 text-white font-semibold block text-center'>
 				Book now
 			</Link>

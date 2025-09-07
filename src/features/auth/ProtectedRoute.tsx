@@ -14,7 +14,7 @@ export default function ProtectedRoute({
 
 	useEffect(() => {
 		if (isAuthenticated === false) {
-			router.replace('/login');
+			router.replace('/vietstay/login');
 		}
 	}, [isAuthenticated, router]);
 

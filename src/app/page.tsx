@@ -15,21 +15,21 @@ export default function Home() {
 			</Banner>
 			<HomeSection
 				title='Danh sách phòng'
-				cta={{ label: 'View All Rooms', href: '/rooms' }}
+				cta={{ label: 'View All Rooms', href: '/vietstay/rooms' }}
 				subtitle='Không gian nghỉ dưỡng đẳng cấp với thiết kế tinh tế và tiện nghi hiện đại..'
 				cl='bg-slate-50'>
 				<RoomTypes />
 			</HomeSection>
 			<HomeSection
 				title='Tiện ích khách sạn'
-				cta={{ label: 'View More', href: '/facilities' }}>
+				cta={{ label: 'View More', href: '/vietstay/facilities' }}>
 				<Facilities />
 			</HomeSection>
 
 			<HomeSection
 				title='Khách Hàng Nói Gì Về Chúng Tôi'
 				subtitle='Khám phá lý do vì sao những du khách sành điệu luôn tin tưởng lựa chọn VietStay cho các kỳ nghỉ sang trọng và độc quyền trên khắp thế giới.'
-				cta={{ label: 'View More', href: '/facilities' }}
+				cta={{ label: 'View More', href: '/vietstay/facilities' }}
 				cl='bg-slate-50'>
 				<Testimonials />
 			</HomeSection>

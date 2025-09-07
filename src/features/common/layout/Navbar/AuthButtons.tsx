@@ -11,7 +11,7 @@ export default function AuthButtons({
 	return (
 		<div className='flex items-center space-x-3 flex-col md:flex-row md:space-x-3 md:space-y-0 space-y-3'>
 			<Link
-				href='/login'
+				href='/vietstay/login'
 				onClick={onClick}
 				className={clsx(
 					'px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border shadow-sm',
@@ -23,7 +23,7 @@ export default function AuthButtons({
 				Đăng nhập
 			</Link>
 			<Link
-				href='/sign-up'
+				href='/vietstay/sign-up'
 				onClick={onClick}
 				className={clsx(
 					'px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 shadow-md',

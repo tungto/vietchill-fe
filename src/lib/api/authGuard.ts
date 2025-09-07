@@ -7,7 +7,7 @@ export async function requireAuth() {
 	console.log('token', token);
 
 	if (!token) {
-		redirect('/login');
+		redirect('/vietstay/login');
 	}
 
 	const res = await fetch('http://localhost:8000/api/auth/profile', {
@@ -18,7 +18,7 @@ export async function requireAuth() {
 	});
 
 	if (!res.ok) {
-		redirect('/login');
+		redirect('/vietstay/login');
 	}
 
 	return res.json(); // profile object

@@ -15,7 +15,7 @@ export default function BookButton({ onBook, id }: BookButtonProps) {
 
 	if (id) {
 		return (
-			<Link href={`/rooms/${id}`} className={buttonStyles}>
+			<Link href={`/vietstay/rooms/${id}`} className={buttonStyles}>
 				Book Now
 			</Link>
 		);

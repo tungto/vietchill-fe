@@ -50,7 +50,7 @@ export default function BookingForm() {
 				icon={<Search />}
 				iconPosition='right'
 				size='lg'
-				href='/rooms'
+				href='/vietstay/rooms'
 			/>
 		</Box>
 	);

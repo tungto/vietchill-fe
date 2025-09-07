@@ -13,7 +13,7 @@ export default function SquareRoomCard({ room }: { room: RoomType }) {
 				{/* Left image */}
 				<div className='rounded-2xl overflow-hidden shadow-xl'>
 					<Link
-						href={`/rooms/${room.id}`}
+						href={`/vietstay/rooms/${room.id}`}
 						className='relative w-full h-72 md:h-96 bg-gray-100 block'>
 						<Image
 							src={`/images/rooms/${room.images[0].path}`}
@@ -28,7 +28,7 @@ export default function SquareRoomCard({ room }: { room: RoomType }) {
 				{/* Right content */}
 				<div className='flex flex-col justify-between'>
 					<div>
-						<Link href={`/rooms/${room.id}`}>
+						<Link href={`/vietstay/rooms/${room.id}`}>
 							<div className='text-sm text-slate-500 mb-2'>
 								Phu Quoc
 							</div>

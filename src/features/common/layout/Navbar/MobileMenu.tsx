@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { Profile } from '@/types';
-import { NAV_LINKS } from './constants';
 import AuthButtons from './AuthButtons';
 import {
 	FaTimes,
@@ -19,6 +18,7 @@ import {
 	MdInfoOutline,
 	MdMiscellaneousServices,
 } from 'react-icons/md';
+import { NAV_LINKS } from '@/lib/routes';
 
 interface MobileMenuProps {
 	onClose: () => void;
@@ -84,7 +84,7 @@ export default function MobileMenu({
 					{isLoggedIn ? (
 						<div className='flex flex-col space-y-3'>
 							<Link
-								href='/profile'
+								href='/vietstay/profile'
 								className='flex items-center text-gray-700 font-semibold hover:text-gray-900'
 								onClick={onClose}>
 								<FaUserCircle className='mr-2' />
@@ -92,7 +92,7 @@ export default function MobileMenu({
 							</Link>
 
 							<Link
-								href='/bookings'
+								href='/vietstay/bookings'
 								className='flex items-center font-bold px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded transition-colors'
 								onClick={onClose}>
 								<FaHistory className='mr-2' />

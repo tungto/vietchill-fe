@@ -178,7 +178,7 @@ export default function RegisterPage() {
 				<p className='text-center text-sm text-gray-500 mt-6'>
 					Already have an account?{' '}
 					<Link
-						href='/login'
+						href='/vietstay/login'
 						className='text-indigo-600 hover:underline'>
 						Login
 					</Link>

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import clsx from 'clsx';
-import { NAV_LINKS } from './constants';
+import { NAV_LINKS } from '@/lib/routes';
 
 export default function DesktopNav({ scrolled }: { scrolled: boolean }) {
 	return (

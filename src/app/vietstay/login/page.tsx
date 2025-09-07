@@ -88,7 +88,7 @@ export default function LoginPage() {
 				<p className='text-center text-sm text-gray-500 mt-6'>
 					Don&apos;t have an account?{' '}
 					<Link
-						href='/sign-up'
+						href='/vietstay/sign-up'
 						className='text-indigo-600 hover:underline'>
 						Sign up
 					</Link>

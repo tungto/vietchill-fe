@@ -1,13 +1,10 @@
-import Footer from '@/features/common/layout/Footer/Footer';
-import Navbar from '@/features/common/layout/Navbar/Navbar';
 import EmotionRegistry from '@/EmotionRegistry';
+import { AuthProvider } from '@/features/auth/AuthContext';
 import ThemeRegistry from '@/ThemeRegistry';
-import { Box } from '@mui/material';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import type { Metadata } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
 import './globals.css';
-import { AuthProvider } from '@/features/auth/AuthContext';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const playfair = Playfair_Display({
@@ -46,15 +43,7 @@ export default function RootLayout({
 				<EmotionRegistry>
 					<AppRouterCacheProvider options={{ enableCssLayer: true }}>
 						<ThemeRegistry>
-							<AuthProvider>
-								<Navbar />
-								<main>
-									<Box className='min-h-[70vh]'>
-										{children}
-									</Box>
-								</main>
-								<Footer />
-							</AuthProvider>
+							<AuthProvider>{children}</AuthProvider>
 						</ThemeRegistry>
 					</AppRouterCacheProvider>
 				</EmotionRegistry>

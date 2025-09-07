@@ -84,12 +84,12 @@ export default function DesktopNavActions({
 							: 'opacity-0 scale-95 pointer-events-none transition ease-in duration-150'
 					)}>
 					<Link
-						href='/profile'
+						href='/vietstay/profile'
 						className='font-bold block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors'>
 						View Profile
 					</Link>
 					<Link
-						href='/bookings'
+						href='/vietstay/bookings'
 						className='font-bold block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors'>
 						Booking History
 					</Link>
