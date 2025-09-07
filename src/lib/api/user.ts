@@ -2,7 +2,7 @@ import {
 	GetProfileResponse,
 	UpdatePasswordPayload,
 	UpdateProfilePayload,
-} from '@/types';
+} from '@/types/vietstay';
 
 const API_URL = 'http://localhost:8000/api/auth';
 

@@ -1,7 +1,8 @@
+import { GetProfileResponse } from '@/types/vietstay';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export async function requireAuth() {
+export async function requireAuth(): Promise<GetProfileResponse> {
 	const token = (await cookies()).get('auth_token')?.value;
 
 	console.log('token', token);

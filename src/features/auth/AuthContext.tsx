@@ -2,7 +2,7 @@
 'use client';
 
 import { apiClient } from '@/lib/api/apiClient';
-import { GetProfileResponse, Profile } from '@/types';
+import { GetProfileResponse, Profile } from '@/types/vietstay';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 interface AuthContextValue {

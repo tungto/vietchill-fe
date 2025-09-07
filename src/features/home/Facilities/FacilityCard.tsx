@@ -1,7 +1,7 @@
 'use client';
 
 import { coloredIconMap } from '@/lib/iconMap';
-import { RoomFacility } from '@/types';
+import { RoomFacility } from '@/types/vietstay';
 
 type FacilityCardProps = {
 	facility: RoomFacility;

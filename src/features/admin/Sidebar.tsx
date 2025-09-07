@@ -1,7 +1,10 @@
+'use client'; // Mark this file as a Client Component
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface SidebarProps {
-	pathname: string; // Add pathname as a prop
+	// pathname: string; // Add pathname as a prop
 	children: React.ReactNode;
 }
 
@@ -9,7 +12,8 @@ const getLinkClass = (pathname: string, link: string): string => {
 	return pathname === link ? 'bg-blue-700' : 'hover:bg-blue-700';
 };
 
-const Sidebar: React.FC<SidebarProps> = ({ children, pathname }) => {
+const Sidebar: React.FC<SidebarProps> = ({ children }) => {
+	const pathname = usePathname(); // Get the current pathname using usePathname()
 	return (
 		<div className='flex min-h-screen'>
 			{/* Sidebar */}

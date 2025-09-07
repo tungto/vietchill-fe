@@ -1,7 +1,7 @@
 'use client';
 
 import { priceRanges, sortOptions } from '@/lib/constants';
-import { RoomType } from '@/types';
+import { RoomType } from '@/types/vietstay';
 import { Dispatch, SetStateAction, useMemo } from 'react';
 
 interface RoomFilterProps {

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { RoomType } from '@/types';
+import { RoomType } from '@/types/vietstay';
 import { priceRanges } from '@/lib/constants';
 
 export function useRoomFilters(rooms: RoomType[]) {

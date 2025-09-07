@@ -1,5 +1,5 @@
 import FacilityChip from '@/features/common/FacilityChip';
-import { RoomFacility, RoomFeature } from '@/types';
+import { RoomFacility, RoomFeature } from '@/types/vietstay';
 
 const OtherInfo = ({
 	info,

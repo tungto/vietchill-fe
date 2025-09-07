@@ -1,5 +1,5 @@
 // lib/mockTestimonials.ts
-import { TestimonialResponse } from '@/types/testimonial';
+import { TestimonialResponse } from '@/types/vietstay/testimonial';
 
 export const mockTestimonials: TestimonialResponse = {
 	success: true,

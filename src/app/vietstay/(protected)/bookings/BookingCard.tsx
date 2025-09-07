@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Divider } from '@mui/material';
-import { Booking } from '@/types/booking';
+import { Booking } from '@/types/vietstay/booking';
 import BookingStatusBadge from './BookingStatusBadge';
 
 export default function BookingCard({ booking }: { booking: Booking }) {

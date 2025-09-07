@@ -1,4 +1,4 @@
-import { RoomTypesResponse } from '@/types';
+import { RoomTypesResponse } from '@/types/vietstay';
 
 export async function getRoomsData(): Promise<RoomTypesResponse> {
 	const res = await fetch('http://localhost:8000/api/room-types');

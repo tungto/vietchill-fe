@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Profile } from '@/types';
+import { Profile } from '@/types/vietstay';
 import AuthButtons from './AuthButtons';
 import {
 	FaTimes,

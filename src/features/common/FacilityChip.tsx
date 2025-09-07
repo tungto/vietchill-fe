@@ -1,5 +1,5 @@
 import { coloredMiniIconMap, simpleIconsMap } from '@/lib/iconMap';
-import { RoomFacility, RoomFeature } from '@/types';
+import { RoomFacility, RoomFeature } from '@/types/vietstay';
 import React from 'react';
 
 type FacilityCardProps = {

@@ -1,5 +1,5 @@
 // lib/api/room.ts
-import { FacilitiesResponse } from '@/types';
+import { FacilitiesResponse } from '@/types/vietstay';
 
 export async function getFacilities(): Promise<FacilitiesResponse> {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/facilities`, {

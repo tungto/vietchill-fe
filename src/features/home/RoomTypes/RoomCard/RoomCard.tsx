@@ -1,7 +1,7 @@
 import AppButton from '@/features/common/AppButton';
 import Rating from '@/features/common/Rating';
 import { formatVND } from '@/lib/utils/formatPrice';
-import { RoomType } from '@/types/room';
+import { RoomType } from '@/types/vietstay/room';
 import { Box, CardContent } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';

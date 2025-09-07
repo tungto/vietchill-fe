@@ -4,6 +4,7 @@
 import { useRouter } from 'next/navigation';
 import { apiClient } from '@/lib/api/apiClient';
 import { useAuth } from '../auth/AuthContext';
+import { Profile } from '@/types/vietstay';
 
 export function useAuthActions() {
 	const router = useRouter();
@@ -22,7 +23,7 @@ export function useAuthActions() {
 			}
 
 			const token = result.data.token;
-			const profile = result.data.user; // adjust if API differs
+			const profile = result.data.user as Profile; // adjust if API differs
 
 			// Save token
 			localStorage.setItem('access_token', token);
@@ -36,7 +37,7 @@ export function useAuthActions() {
 			// 🔑 Update context so Navbar updates immediately
 			setUser(profile);
 
-			router.push('/');
+			router.push('/admin');
 		} catch (err) {
 			throw err; // let component handle errors
 		}
@@ -48,7 +49,7 @@ export function useAuthActions() {
 		document.cookie =
 			'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 		setUser(null);
-		router.push('/');
+		router.push('/admin/login');
 	}
 
 	return { login, logout };

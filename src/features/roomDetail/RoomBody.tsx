@@ -1,6 +1,6 @@
 // components/roomDetails/RoomBody.tsx
 import FacilityChip from '@/features/common/FacilityChip';
-import { RoomType } from '@/types/room';
+import { RoomType } from '@/types/vietstay/room';
 
 const RoomBody = ({ room }: { room: RoomType }) => (
 	<div className='lg:col-span-2'>

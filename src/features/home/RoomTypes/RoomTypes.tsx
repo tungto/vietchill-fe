@@ -1,4 +1,4 @@
-import { RoomTypesResponse } from '@/types/room';
+import { RoomTypesResponse } from '@/types/vietstay/room';
 import HotelCard from './RoomCard/RoomCard';
 
 const RoomTypes = async () => {

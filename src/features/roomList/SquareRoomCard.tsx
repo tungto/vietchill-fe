@@ -1,5 +1,5 @@
 import { formatVND } from '@/lib/utils';
-import { RoomType } from '@/types';
+import { RoomType } from '@/types/vietstay';
 import PlaceIcon from '@mui/icons-material/Place';
 import Image from 'next/image';
 import Link from 'next/link';

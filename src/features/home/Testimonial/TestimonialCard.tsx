@@ -1,6 +1,6 @@
 // app/components/TestimonialCard.tsx
 import Image from 'next/image';
-import { Testimonial } from '@/types/testimonial';
+import { Testimonial } from '@/types/vietstay/testimonial';
 import { Rating } from '@mui/material';
 
 type Props = {

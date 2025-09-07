@@ -1,4 +1,4 @@
-import { FacilitiesResponse } from '@/types/facility';
+import { FacilitiesResponse } from '@/types/vietstay/facility';
 import FacilityCard from './FacilityCard';
 import { getFacilities } from '@/lib/api/facilities';
 

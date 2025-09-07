@@ -1,5 +1,5 @@
 'use client';
-import { RoomType } from '@/types';
+import { RoomType } from '@/types/vietstay';
 import { Divider } from '../common/Divider';
 import RoomFilter from '../common/RoomFilter/RoomFilter';
 import { useRoomFilters } from '../common/RoomFilter/useRoomFilters';

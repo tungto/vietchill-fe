@@ -49,7 +49,7 @@ export default function LoginPage() {
 					Welcome Back
 				</h1>
 				<p className='text-center text-gray-500 mb-8'>
-					Log in to continue booking your perfect stay
+					Log in to manage your booking site
 				</p>
 
 				<form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>

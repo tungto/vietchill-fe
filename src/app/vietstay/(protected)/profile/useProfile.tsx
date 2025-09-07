@@ -8,7 +8,7 @@ import {
 	GetProfileResponse,
 	UpdatePasswordPayload,
 	UpdateProfilePayload,
-} from '@/types/user';
+} from '@/types/vietstay/user';
 import { changePassword, getProfile, updateProfile } from '@/lib/api/user';
 
 export const profileSchema = yup.object({

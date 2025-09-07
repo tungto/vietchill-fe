@@ -1,5 +1,5 @@
 // lib/api/room.ts
-import { RoomType } from '@/types/room';
+import { RoomType } from '@/types/vietstay/room';
 
 export async function getRoomData(id: string): Promise<RoomType> {
 	const res = await fetch(

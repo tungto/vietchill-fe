@@ -1,6 +1,6 @@
 'use client';
 
-import { RoomType } from '@/types';
+import { RoomType } from '@/types/vietstay';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';

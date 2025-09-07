@@ -1,4 +1,4 @@
-import { Booking } from '@/types/booking';
+import { Booking } from '@/types/vietstay/booking';
 import { cookies } from 'next/headers';
 import axios from 'axios';
 import BookingCard from './BookingCard';

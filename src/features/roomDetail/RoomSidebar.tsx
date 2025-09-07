@@ -1,5 +1,5 @@
 // components/roomDetails/RoomSidebar.tsx
-import { RoomType } from '@/types/room';
+import { RoomType } from '@/types/vietstay/room';
 import { formatVND } from '@/lib/utils/formatPrice';
 import Link from 'next/link';
 
