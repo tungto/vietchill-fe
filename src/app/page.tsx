@@ -15,10 +15,8 @@ export default function Home() {
 			</Banner>
 			<HomeSection
 				title='Danh sách phòng'
-				cta={{ label: 'View All Destinations', href: '/rooms' }}
-				subtitle='Discover our handpicked selection of exceptional properties
-					around the world, offering unparalleled luxury and
-					unforgettable experiences.'
+				cta={{ label: 'View All Rooms', href: '/rooms' }}
+				subtitle='Không gian nghỉ dưỡng đẳng cấp với thiết kế tinh tế và tiện nghi hiện đại..'
 				cl='bg-slate-50'>
 				<RoomTypes />
 			</HomeSection>
@@ -29,8 +27,8 @@ export default function Home() {
 			</HomeSection>
 
 			<HomeSection
-				title='What Our Guests Say'
-				subtitle='Discover why discerning travelers consistently choose QuickStay for their exclusive and luxurious accommodations around the world.'
+				title='Khách Hàng Nói Gì Về Chúng Tôi'
+				subtitle='Khám phá lý do vì sao những du khách sành điệu luôn tin tưởng lựa chọn VietStay cho các kỳ nghỉ sang trọng và độc quyền trên khắp thế giới.'
 				cta={{ label: 'View More', href: '/facilities' }}
 				cl='bg-slate-50'>
 				<Testimonials />

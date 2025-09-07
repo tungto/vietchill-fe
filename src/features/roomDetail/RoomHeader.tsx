@@ -1,5 +1,6 @@
 // components/roomDetails/RoomHeader.tsx
 import Rating from '@/features/common/Rating';
+import PlaceIcon from '@mui/icons-material/Place';
 
 interface RoomHeaderProps {
 	title: string;
@@ -19,19 +20,12 @@ const RoomHeader = ({ title }: RoomHeaderProps) => (
 				</div>
 			</h1>
 			<div className='mt-3 flex items-center gap-4'>
-				<Rating value={5} />
+				<Rating value={4} />
 				<div className='flex items-center text-sm text-gray-500 gap-2'>
-					<svg
-						className='w-4 h-4'
-						viewBox='0 0 24 24'
-						fill='none'
-						stroke='currentColor'>
-						<path
-							d='M12 2a10 10 0 100 20 10 10 0 000-20z'
-							strokeWidth='1.2'
-						/>
-					</svg>
-					<span>Main Road 123 Street , 23 Colony</span>
+					<PlaceIcon />
+					<span>
+						Bãi Trường, Dương Tơ, Phú Quốc, Kiên Giang 920000
+					</span>
 				</div>
 			</div>
 		</div>

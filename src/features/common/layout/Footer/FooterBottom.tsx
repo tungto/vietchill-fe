@@ -3,7 +3,7 @@ import { bottomLinks } from './constant';
 
 const FooterBottom = () => (
 	<div className='mt-10  border-t border-gray-200 pt-6 text-sm text-gray-500 text-center flex justify-center gap-6 '>
-		<span>© 2025 QuickStay. All rights reserved.</span>
+		<span>© 2025 VietStay. All rights reserved.</span>
 		{bottomLinks.map(({ label, href }) => (
 			<a
 				key={label}

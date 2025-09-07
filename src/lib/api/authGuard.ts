@@ -1,0 +1,25 @@
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+
+export async function requireAuth() {
+	const token = (await cookies()).get('auth_token')?.value;
+
+	console.log('token', token);
+
+	if (!token) {
+		redirect('/login');
+	}
+
+	const res = await fetch('http://localhost:8000/api/auth/profile', {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+		cache: 'no-store', // avoid caching auth check
+	});
+
+	if (!res.ok) {
+		redirect('/login');
+	}
+
+	return res.json(); // profile object
+}

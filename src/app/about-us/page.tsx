@@ -5,7 +5,7 @@ import { FiAward, FiUsers, FiGlobe } from 'react-icons/fi';
 
 export default function AboutPage() {
 	return (
-		<div className='max-w-6xl mx-auto px-6 py-20'>
+		<div className='max-w-6xl mx-auto px-6 py-20 mt-16'>
 			{/* Title */}
 			<h1 className='text-4xl md:text-5xl font-serif font-bold text-slate-900 text-center mb-16'>
 				Về chúng tôi
@@ -27,13 +27,13 @@ export default function AboutPage() {
 				{/* Nội dung */}
 				<div className='space-y-6'>
 					<h2 className='text-3xl font-semibold text-slate-800'>
-						InterContinental Phu Quoc Long Beach Resort
+						VietStay Phu Quoc Long Beach Resort
 					</h2>
 					<p className='text-slate-600 leading-relaxed'>
-						Nằm tại Bãi Trường tuyệt đẹp, InterContinental Phu Quoc
-						Long Beach Resort mang đến trải nghiệm nghỉ dưỡng sang
-						trọng bậc nhất với không gian thoáng đãng, kiến trúc
-						hiện đại hòa quyện cùng vẻ đẹp thiên nhiên của đảo ngọc.
+						Nằm tại Bãi Trường tuyệt đẹp, VietStay Phu Quoc Long
+						Beach Resort mang đến trải nghiệm nghỉ dưỡng sang trọng
+						bậc nhất với không gian thoáng đãng, kiến trúc hiện đại
+						hòa quyện cùng vẻ đẹp thiên nhiên của đảo ngọc.
 					</p>
 					<p className='text-slate-600 leading-relaxed'>
 						Chúng tôi tự hào mang đến dịch vụ đẳng cấp quốc tế, từ

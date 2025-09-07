@@ -21,7 +21,7 @@ const FooterLogo = () => (
 					/>
 				</svg>
 			</div>
-			QuickStay
+			VietStay
 		</div>
 		<p className='text-sm text-gray-500'>
 			Discover the world&apos; most extraordinary places to stay, from

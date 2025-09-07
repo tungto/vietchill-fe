@@ -1,8 +1,8 @@
-import NewsletterForm from './NewsletterForm';
-import { bottomLinks, companyLinks, supportLinks } from './constant';
+import { companyLinks, supportLinks } from './constant';
 import FooterBottom from './FooterBottom';
 import FooterLinks from './FooterLinks';
 import FooterLogo from './FooterLogo';
+import NewsletterForm from './NewsletterForm';
 
 export const NAV_LINKS = [
 	{ href: '/', label: 'Trang chủ' },

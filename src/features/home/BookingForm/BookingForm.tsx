@@ -36,13 +36,13 @@ export default function BookingForm() {
 				label='Adults'
 				icon={<Person />}
 				value={adults}
-				onChange={() => setAdults(Number('e.target.value'))}
+				onChange={(newValue) => setAdults(Number(newValue))}
 			/>
 			<NumberInput
 				label='Children'
 				icon={<ChildCare />}
 				value={children}
-				onChange={() => setChildren(Number('e.target.value'))}
+				onChange={(newValue) => setChildren(Number(newValue))}
 			/>
 
 			<AppButton
@@ -50,6 +50,7 @@ export default function BookingForm() {
 				icon={<Search />}
 				iconPosition='right'
 				size='lg'
+				href='/rooms'
 			/>
 		</Box>
 	);

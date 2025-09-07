@@ -1,12 +1,13 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { FiMail, FiLock } from 'react-icons/fi';
 import FormInput from '@/features/auth/FormInput';
+import { useAuthActions } from '@/features/hooks/useAuthActions';
+import { yupResolver } from '@hookform/resolvers/yup';
+import Link from 'next/link';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { FiLock, FiMail } from 'react-icons/fi';
+import * as yup from 'yup';
 
 const loginSchema = yup.object().shape({
 	email: yup.string().email('Invalid email').required('Email is required'),
@@ -16,7 +17,6 @@ const loginSchema = yup.object().shape({
 type LoginFormInputs = yup.InferType<typeof loginSchema>;
 
 export default function LoginPage() {
-	const router = useRouter();
 	const [loading, setLoading] = useState(false);
 	const [serverError, setServerError] = useState('');
 
@@ -28,32 +28,20 @@ export default function LoginPage() {
 		resolver: yupResolver(loginSchema),
 	});
 
+	const { login } = useAuthActions();
 	const onSubmit = async (data: LoginFormInputs) => {
 		setLoading(true);
 		setServerError('');
 
 		try {
-			const res = await fetch('http://localhost:8000/api/auth/login', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(data),
-			});
-
-			const result = await res.json();
-
-			if (!result.success) {
-				setServerError(result.message || 'Login failed');
-			} else {
-				localStorage.setItem('token', result.data.token);
-				router.push('/');
-			}
-		} catch {
+			await login(data.email, data.password);
+		} catch (err: unknown) {
+			console.log(err);
 			setServerError('Something went wrong. Please try again.');
 		} finally {
 			setLoading(false);
 		}
 	};
-
 	return (
 		<div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4'>
 			<div className='w-full max-w-md bg-white p-8 rounded-2xl shadow-lg'>
@@ -99,11 +87,11 @@ export default function LoginPage() {
 
 				<p className='text-center text-sm text-gray-500 mt-6'>
 					Don&apos;t have an account?{' '}
-					<a
+					<Link
 						href='/sign-up'
 						className='text-indigo-600 hover:underline'>
 						Sign up
-					</a>
+					</Link>
 				</p>
 			</div>
 		</div>

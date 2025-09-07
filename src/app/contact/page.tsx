@@ -2,7 +2,7 @@ import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
 
 export default function ContactPage() {
 	return (
-		<div className='max-w-5xl mx-auto px-6 py-20'>
+		<div className='max-w-5xl mx-auto px-6 py-20 mt-16'>
 			{/* Tiêu đề */}
 			<h1 className='text-4xl md:text-5xl font-serif font-bold text-slate-900 text-center mb-16'>
 				Liên hệ với chúng tôi
@@ -17,8 +17,8 @@ export default function ContactPage() {
 						</h2>
 						<p className='text-slate-600 leading-relaxed'>
 							Hãy liên hệ với chúng tôi để được tư vấn và hỗ trợ
-							đặt phòng tại InterContinental Phu Quoc Long Beach
-							Resort. Chúng tôi rất mong được phục vụ bạn.
+							đặt phòng tại VietStay Phu Quoc Long Beach Resort.
+							Chúng tôi rất mong được phục vụ bạn.
 						</p>
 					</div>
 
@@ -56,11 +56,13 @@ export default function ContactPage() {
 					{/* Bản đồ */}
 					<div className='rounded-2xl overflow-hidden shadow-md border border-slate-200'>
 						<iframe
-							src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0911!2d-122.4194!3d37.7749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809caaaaaa!2sHotel!5e0!3m2!1sen!2sus!4v1689943200000!5m2!1sen!2sus'
+							src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.401961635007!2d103.96303107503536!3d10.160538971721604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a7140af9b8c9e9%3A0x95d5f2ac3531768a!2sInterContinental%20Phu%20Quoc%20Long%20Beach%20Resort%2C%20an%20IHG%20Hotel!5e0!3m2!1sen!2s!4v1694092978189!5m2!1sen!2s'
 							width='100%'
 							height='260'
 							loading='lazy'
 							className='border-0'
+							allowFullScreen
+							referrerPolicy='no-referrer-when-downgrade'
 						/>
 					</div>
 				</div>

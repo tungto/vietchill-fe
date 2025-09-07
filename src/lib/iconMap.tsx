@@ -59,7 +59,7 @@ export const coloredMiniIconMap: Record<string, React.ReactNode> = {
 };
 
 // Icon Mapping
-export const simpleFacilityIcons: Record<string, JSX.Element> = {
+export const simpleIconsMap: Record<string, JSX.Element> = {
 	wifi: <FaWifi />,
 	conditioner: <FaSnowflake />,
 	tv: <FaTv />,
@@ -70,9 +70,6 @@ export const simpleFacilityIcons: Record<string, JSX.Element> = {
 	fridge: <FaGlassMartiniAlt />,
 	kettle: <FaUtensils />,
 	minibar: <FaGlassMartiniAlt />,
-};
-
-export const simpleFeatureIcons: Record<string, JSX.Element> = {
 	bedroom: <MdOutlineBedroomParent />,
 	balcony: <MdOutlineBalcony />,
 	kitchen: <MdOutlineKitchen />,
@@ -84,6 +81,19 @@ export const simpleFeatureIcons: Record<string, JSX.Element> = {
 	'double-bed': <MdOutlineKingBed />,
 	'Interconnecting-room': <MdOutlineBedroomParent />,
 };
+
+// export const simpleFeatureIcons: Record<string, JSX.Element> = {
+// 	bedroom: <MdOutlineBedroomParent />,
+// 	balcony: <MdOutlineBalcony />,
+// 	kitchen: <MdOutlineKitchen />,
+// 	'garden-view': <MdOutlineLandscape />,
+// 	'lake-view': <MdOutlineLandscape />,
+// 	'forest-view': <MdOutlineLandscape />,
+// 	'city-view': <MdOutlineHolidayVillage />,
+// 	'single-bed': <MdOutlineKingBed />,
+// 	'double-bed': <MdOutlineKingBed />,
+// 	'Interconnecting-room': <MdOutlineBedroomParent />,
+// };
 
 // const facilityIconMap: Record<string, React.ReactNode> = {
 // 	wifi: <FiWifi size={18} />,

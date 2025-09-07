@@ -20,6 +20,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
 }) => {
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		let newValue = Number(event.target.value);
+		console.log('newValue', newValue);
 		if (newValue < min) newValue = min;
 		if (newValue > max) newValue = max;
 		onChange(newValue);

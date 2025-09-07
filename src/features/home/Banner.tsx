@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const Banner = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<div className='relative h-screen w-full text-white overflow-hidden'>
@@ -28,11 +30,11 @@ const Banner = ({ children }: { children: React.ReactNode }) => {
 				</p>
 
 				<div className='mt-4 mb-16'>
-					<a
-						href='#'
+					<Link
+						href='/rooms'
 						className='inline-block px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-full border border-white/20 backdrop-blur-md transition-all duration-200'>
 						Explore Hotels
-					</a>
+					</Link>
 				</div>
 
 				{children}

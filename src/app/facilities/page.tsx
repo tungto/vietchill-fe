@@ -12,7 +12,7 @@ const FacilitiesPage = async () => {
 	];
 
 	return (
-		<div className='min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100'>
+		<div className='min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 mt-16'>
 			{/* Hero Section */}
 			<div className='relative bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 text-white'>
 				<div className='absolute inset-0 bg-black/20'></div>

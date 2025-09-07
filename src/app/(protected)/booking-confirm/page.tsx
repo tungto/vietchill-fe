@@ -1,0 +1,39 @@
+import BookingForm from '@/features/booking-confirm/BookingForm';
+import RoomCard from '@/features/booking-confirm/RoomCard';
+import { getRoomData } from '@/lib/api/room';
+
+export default async function BookingConfirmPage({
+	searchParams,
+}: {
+	searchParams: { id?: string };
+}) {
+	try {
+		const { id } = searchParams;
+		const room = await getRoomData(id ?? '');
+
+		return (
+			<div className='container mx-auto px-4 py-8 mt-16'>
+				<h1 className='text-3xl font-bold mb-8 text-center'>
+					XÁC NHẬN ĐẶT PHÒNG
+				</h1>
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+					<RoomCard
+						name='Phòng Sang Trọng'
+						price={3500000}
+						imageUrl={`/images/rooms/${room.images[0].path}`}
+					/>
+					<BookingForm room={room} />
+				</div>
+			</div>
+		);
+	} catch (error) {
+		console.error('error', error);
+		return (
+			<main className='max-w-6xl mx-auto px-6 py-12 mt-16'>
+				<p className='text-red-500 text-center'>
+					Failed to load room data. Please try again later.
+				</p>
+			</main>
+		);
+	}
+}

@@ -10,7 +10,7 @@ export const mockTestimonials: TestimonialResponse = {
 			avatar: '/images/users/chill-guy.png',
 			rating: 4,
 			content:
-				"I've used many booking platforms before, but none compare to the personalized experience and attention to detail that QuickStay provides. Their curated selection of hotels is unmatched.",
+				"I've used many booking platforms before, but none compare to the personalized experience and attention to detail that VietStay provides. Their curated selection of hotels is unmatched.",
 		},
 		{
 			id: 2,
@@ -18,7 +18,7 @@ export const mockTestimonials: TestimonialResponse = {
 			avatar: '/images/users/chill-guy.png',
 			rating: 5,
 			content:
-				'Booking with QuickStay was seamless and stress-free. Highly recommend to anyone looking for quality stays!',
+				'Booking with VietStay was seamless and stress-free. Highly recommend to anyone looking for quality stays!',
 		},
 		{
 			id: 3,
@@ -26,7 +26,7 @@ export const mockTestimonials: TestimonialResponse = {
 			avatar: '/images/users/chill-guy.png',
 			rating: 5,
 			content:
-				'Booking with QuickStay was seamless and stress-free. Highly recommend to anyone looking for quality stays!',
+				'Booking with VietStay was seamless and stress-free. Highly recommend to anyone looking for quality stays!',
 		},
 	],
 };

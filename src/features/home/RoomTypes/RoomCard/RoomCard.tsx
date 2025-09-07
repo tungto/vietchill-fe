@@ -1,7 +1,7 @@
 import AppButton from '@/features/common/AppButton';
-import { RoomType } from '@/types/room';
+import Rating from '@/features/common/Rating';
 import { formatVND } from '@/lib/utils/formatPrice';
-import { Star } from '@mui/icons-material';
+import { RoomType } from '@/types/room';
 import { Box, CardContent } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -49,14 +49,7 @@ const RoomCard = ({
 						<h5 className='font-semibold text-lg text-gray-900'>
 							{name}
 						</h5>
-						<Box className='flex items-center text-yellow-500'>
-							<Star
-								fontSize={'small'}
-								fill='currentColor'
-								className='mr-1'
-							/>
-							<span className='font-medium'>4.5</span>
-						</Box>
+						<Rating value={4} />
 					</div>
 
 					{/* Description */}
@@ -80,7 +73,10 @@ const RoomCard = ({
 					</span>
 				</h6>
 
-				<AppButton label='Book Now' href={`/rooms/${id}`} />
+				<AppButton
+					label='Book Now'
+					href={`/booking-confirm?id=${id}`}
+				/>
 			</Box>
 		</div>
 	);

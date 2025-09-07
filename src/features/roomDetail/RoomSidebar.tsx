@@ -1,6 +1,7 @@
 // components/roomDetails/RoomSidebar.tsx
 import { RoomType } from '@/types/room';
 import { formatVND } from '@/lib/utils/formatPrice';
+import Link from 'next/link';
 
 const RoomSidebar = ({ room }: { room: RoomType }) => (
 	<aside className='bg-white rounded-xl p-0'>
@@ -18,12 +19,11 @@ const RoomSidebar = ({ room }: { room: RoomType }) => (
 				{room.adult} adults • {room.children} children
 			</div>
 
-			<button className='mt-6 w-full py-3 rounded-xl bg-orange-500 text-white font-semibold'>
+			<Link
+				href={`/booking-confirm?id=${room.id}`}
+				className='mt-6 w-full py-3 rounded-xl bg-orange-500 text-white font-semibold block text-center'>
 				Book now
-			</button>
-			<button className='mt-3 w-full py-2 rounded-xl border border-gray-200 text-gray-700'>
-				View availability
-			</button>
+			</Link>
 		</div>
 	</aside>
 );
