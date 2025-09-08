@@ -38,8 +38,10 @@ export default async function BookingsPage() {
   } catch (error: any) {
     return (
       <div className='p-6 max-w-5xl mx-auto mt-16'>
-        <h1 className='text-3xl font-bold mb-6'>Booking History</h1>
-        <p className='text-red-600'>Error loading bookings: {error.message}</p>
+        <h1 className='text-3xl font-bold mb-6'>Lịch sử đặt phòng</h1>
+        <p className='text-red-600'>
+          Lỗi khi tải lịch sử đặt phòng: {error.message}
+        </p>
       </div>
     );
   }
@@ -47,8 +49,8 @@ export default async function BookingsPage() {
   if (bookings.length === 0) {
     return (
       <div className='p-6 max-w-5xl mx-auto mt-16'>
-        <h1 className='text-3xl font-bold mb-6'>Booking History</h1>
-        <p className='text-gray-500'>No bookings found.</p>
+        <h1 className='text-3xl font-bold mb-6'>Lịch sử đặt phòng</h1>
+        <p className='text-gray-500'>Không có đơn đặt phòng nào.</p>
       </div>
     );
   }
@@ -57,7 +59,7 @@ export default async function BookingsPage() {
     <div className='min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8'>
       <div className='max-w-5xl mx-auto'>
         <h1 className='text-3xl font-bold mb-10 text-gray-900'>
-          Booking History
+          Lịch sử đặt phòng
         </h1>
         <ul className='space-y-8'>
           {bookings.map((booking) => (

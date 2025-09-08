@@ -3,23 +3,23 @@ import { redirect } from 'next/navigation';
 import { requireAuth } from '@/lib/api/authGuard';
 
 export default async function ProtectedLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	const profile = await requireAuth();
+  const profile = await requireAuth();
 
-	if (!profile) {
-		// If somehow unauthenticated here (edge case), redirect to login
-		redirect('/vietstay/login');
-	}
+  if (!profile) {
+    // If somehow unauthenticated here (edge case), redirect to login
+    redirect('/vietstay/login');
+  }
 
-	return (
-		<div>
-			<header className='p-4 bg-gray-100 border-b'>
-				<p>Welcome, {profile.name}</p>
-			</header>
-			<main>{children}</main>
-		</div>
-	);
+  return (
+    <div>
+      <header className='p-4 bg-gray-100 border-b'>
+        <p>Chào mừng, {profile.data.name}</p>
+      </header>
+      <main>{children}</main>
+    </div>
+  );
 }

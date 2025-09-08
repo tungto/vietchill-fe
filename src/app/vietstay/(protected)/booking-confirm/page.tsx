@@ -31,7 +31,7 @@ export default async function BookingConfirmPage({
     return (
       <main className='max-w-6xl mx-auto px-6 py-12 mt-16'>
         <p className='text-red-500 text-center'>
-          Failed to load room data. Please try again later.
+          Không tải được dữ liệu phòng. Vui lòng thử lại sau.
         </p>
       </main>
     );

@@ -8,9 +8,9 @@ export default function BookingCard({ booking }: { booking: Booking }) {
     booking.room_type.images.find((img) => img.is_thumbnail)?.path ||
     'placeholder.png';
 
-  const checkIn = new Date(booking.check_in_date).toLocaleDateString();
-  const checkOut = new Date(booking.check_out_date).toLocaleDateString();
-  const createdAt = new Date(booking.created_at).toLocaleDateString();
+  const checkIn = new Date(booking.check_in_date).toLocaleDateString('vi-VN');
+  const checkOut = new Date(booking.check_out_date).toLocaleDateString('vi-VN');
+  const createdAt = new Date(booking.created_at).toLocaleDateString('vi-VN');
 
   const formattedPrice = new Intl.NumberFormat('vi-VN', {
     style: 'currency',
@@ -40,22 +40,21 @@ export default function BookingCard({ booking }: { booking: Booking }) {
 
         <div className='grid grid-cols-1 md:grid-cols-2 gap-y-1 gap-x-6 text-gray-600 text-base'>
           <p>
-            Check-in: <strong>{checkIn}</strong>
+            Nhận phòng: <strong>{checkIn}</strong>
           </p>
           <p>
-            Check-out: <strong>{checkOut}</strong>
+            Trả phòng: <strong>{checkOut}</strong>
           </p>
 
           <p>
-            Guests: <strong>{booking.adult}</strong> adult
-            {booking.adult > 1 ? 's' : ''}, <strong>{booking.children}</strong>{' '}
-            children
+            Số lượng khách: <strong>{booking.adult}</strong> người lớn,{' '}
+            <strong>{booking.children}</strong> trẻ em
           </p>
 
-          <p>Phone: {booking.phone}</p>
+          <p>Điện thoại: {booking.phone}</p>
 
           <p>
-            Booked on: <strong>{createdAt}</strong>
+            Đặt lúc: <strong>{createdAt}</strong>
           </p>
         </div>
 
@@ -65,13 +64,14 @@ export default function BookingCard({ booking }: { booking: Booking }) {
 
         {booking.review ? (
           <div className='text-gray-700 text-base pt-2'>
-            <strong>Review:</strong> {booking.review.review || 'No review text'}
+            <strong>Đánh giá:</strong>{' '}
+            {booking.review.review || 'Không có nội dung đánh giá'}
             <br />
-            <strong>Rating:</strong> {booking.review.rating} / 5
+            <strong>Điểm:</strong> {booking.review.rating} / 5
           </div>
         ) : (
           <div className='italic text-gray-400 text-base pt-2'>
-            No review yet
+            Chưa có đánh giá
           </div>
         )}
       </div>

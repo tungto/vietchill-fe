@@ -38,7 +38,7 @@ export default function SquareRoomCard({ room }: { room: RoomType }) {
 
             <div className='flex items-center gap-4 mb-4'>
               <Rating value={4} />
-              <div className='text-sm text-slate-600'>200+ reviews</div>
+              <div className='text-sm text-slate-600'>200+ đánh giá</div>
             </div>
 
             <div className='flex items-center gap-3 text-slate-600 mb-6'>
@@ -60,7 +60,7 @@ export default function SquareRoomCard({ room }: { room: RoomType }) {
             <div>
               <div className='text-2xl md:text-3xl font-semibold text-slate-900'>
                 {formatVND(room.price)}/
-                <span className='text-sm font-normal'>night</span>
+                <span className='text-sm font-normal'>đêm</span>
               </div>
             </div>
           </div>

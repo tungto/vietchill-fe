@@ -56,8 +56,8 @@ const RoomCard = ({
           </p>
 
           {/* Other info */}
-          <OtherInfo info={features} name='Space' />
-          <OtherInfo info={facilities} name='Facilities' />
+          <OtherInfo info={features} name='Không gian' />
+          <OtherInfo info={facilities} name='Tiện nghi' />
 
           {/* Price & Book Button */}
         </CardContent>
@@ -65,11 +65,11 @@ const RoomCard = ({
       <Box className='flex items-center justify-between mt-0 p-5 sm:p-6'>
         <h6 className='font-semibold text-lg text-gray-900'>
           {formatVND(price)}
-          <span className='text-gray-500 text-sm font-normal'> / night</span>
+          <span className='text-gray-500 text-sm font-normal'> / đêm</span>
         </h6>
 
         <AppButton
-          label='Book Now'
+          label='Đặt ngay'
           href={`/vietstay/booking-confirm?id=${id}`}
         />
       </Box>
