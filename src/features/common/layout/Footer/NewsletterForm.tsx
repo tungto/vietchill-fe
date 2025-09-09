@@ -7,8 +7,7 @@ const NewsletterForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Subscribed with ${email}`);
-    // Xử lý gửi email lên backend ở đây
+    alert(`Đã đăng ký với email: ${email}`);
   };
 
   return (
@@ -23,7 +22,7 @@ const NewsletterForm = () => {
       <form className='flex max-w-xs' onSubmit={handleSubmit}>
         <input
           type='email'
-          placeholder='Your email'
+          placeholder='Email của bạn'
           className='flex-grow rounded-l border border-gray-300 px-4 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent'
           value={email}
           onChange={(e) => setEmail(e.target.value)}
