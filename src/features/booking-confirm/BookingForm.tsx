@@ -54,7 +54,6 @@ export default function BookingForm({ room }: { room: RoomType }) {
   const onSubmit = async (data: FormData) => {
     const ok = await submitBooking(data);
 
-    console.log('ok', ok);
     if (ok) {
       setOpenModal(true);
     } else alert('Có lỗi xảy ra khi đặt phòng!');
@@ -83,7 +82,7 @@ export default function BookingForm({ room }: { room: RoomType }) {
           })}
           className={clsx(
             'mt-1 w-full rounded-lg border px-3 py-2',
-            errors.name && 'border-red-500'
+            errors.name && 'border-red-500',
           )}
           disabled={loading || isSubmitting}
         />
@@ -108,7 +107,7 @@ export default function BookingForm({ room }: { room: RoomType }) {
           })}
           className={clsx(
             'mt-1 w-full rounded-lg border px-3 py-2',
-            errors.phone && 'border-red-500'
+            errors.phone && 'border-red-500',
           )}
           disabled={loading || isSubmitting}
         />
@@ -128,7 +127,7 @@ export default function BookingForm({ room }: { room: RoomType }) {
           })}
           className={clsx(
             'mt-1 w-full rounded-lg border px-3 py-2',
-            errors.address && 'border-red-500'
+            errors.address && 'border-red-500',
           )}
           rows={3}
           disabled={loading || isSubmitting}
@@ -151,7 +150,7 @@ export default function BookingForm({ room }: { room: RoomType }) {
             })}
             className={clsx(
               'mt-1 w-full rounded-lg border px-3 py-2',
-              errors.check_in_date && 'border-red-500'
+              errors.check_in_date && 'border-red-500',
             )}
             disabled={loading || isSubmitting}
           />
@@ -174,7 +173,7 @@ export default function BookingForm({ room }: { room: RoomType }) {
             })}
             className={clsx(
               'mt-1 w-full rounded-lg border px-3 py-2',
-              errors.check_out_date && 'border-red-500'
+              errors.check_out_date && 'border-red-500',
             )}
             disabled={loading || isSubmitting}
           />
@@ -189,7 +188,7 @@ export default function BookingForm({ room }: { room: RoomType }) {
       <button
         type='submit'
         disabled={loading || isSubmitting}
-        className='w-full bg-green-600 text-white font-medium py-2 rounded-lg hover:bg-green-700 transition disabled:opacity-60'
+        className='w-full bg-green-600 text-white font-medium py-2 rounded-lg hover:bg-green-700 transition disabled:opacity-60 cursor-pointer'
       >
         {loading || isSubmitting ? 'Đang xử lý...' : 'Đặt phòng'}
       </button>

@@ -18,8 +18,8 @@ export default async function BookingConfirmPage({
         </h1>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
           <RoomCard
-            name='Phòng Sang Trọng'
-            price={3500000}
+            name={room.name}
+            price={room.price}
             imageUrl={`${process.env.NEXT_PUBLIC_BASE_URL}/${room.images[0].path}`}
           />
           <BookingForm room={room} />

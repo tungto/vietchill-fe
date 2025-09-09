@@ -30,7 +30,7 @@ export default function BookingCard({ booking }: { booking: Booking }) {
         />
       </div>
 
-      <div className='flex flex-col flex-grow p-5 space-y-3 md:w-2/3'>
+      <div className='flex flex-col flex-grow justify-center p-5 space-y-3 md:w-2/3'>
         <div className='flex justify-between items-center'>
           <h2 className='text-xl font-semibold text-gray-900'>
             {booking.room_type.name}
@@ -59,21 +59,6 @@ export default function BookingCard({ booking }: { booking: Booking }) {
         </div>
 
         <p className='text-lg font-semibold text-gray-900'>{formattedPrice}</p>
-
-        <Divider />
-
-        {booking.review ? (
-          <div className='text-gray-700 text-base pt-2'>
-            <strong>Đánh giá:</strong>{' '}
-            {booking.review.review || 'Không có nội dung đánh giá'}
-            <br />
-            <strong>Điểm:</strong> {booking.review.rating} / 5
-          </div>
-        ) : (
-          <div className='italic text-gray-400 text-base pt-2'>
-            Chưa có đánh giá
-          </div>
-        )}
       </div>
     </li>
   );
