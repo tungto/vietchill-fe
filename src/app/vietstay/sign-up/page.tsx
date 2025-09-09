@@ -15,6 +15,7 @@ import {
 } from 'react-icons/fi';
 import FormInput from '@/features/auth/FormInput';
 import Link from 'next/link';
+import { useAuthActions } from '@/features/hooks/useAuthActions';
 
 const registerSchema = yup.object({
   name: yup.string().required('Name is required'),
@@ -41,9 +42,9 @@ const registerSchema = yup.object({
 type RegisterFormInputs = yup.InferType<typeof registerSchema>;
 
 export default function RegisterPage() {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [serverError, setServerError] = useState('');
+  const { login } = useAuthActions();
 
   const {
     register,
@@ -81,7 +82,7 @@ export default function RegisterPage() {
         setServerError(result.message || 'Registration failed');
       } else {
         localStorage.setItem('token', result.data.token);
-        router.push('/');
+        await login(data.email, data.password);
       }
     } catch {
       setServerError('Something went wrong. Please try again.');
@@ -170,7 +171,7 @@ export default function RegisterPage() {
           <button
             type='submit'
             disabled={loading}
-            className='w-full bg-[#0f4c4c] hover:bg-[#0c3d3d] text-white font-medium py-2.5 rounded-lg shadow-md transition disabled:opacity-50'
+            className='w-full bg-[#0f4c4c] hover:bg-[#0c3d3d] text-white font-medium py-2.5 rounded-lg shadow-md transition disabled:opacity-50 cursor-pointer'
           >
             {loading ? 'Đang đăng ký...' : 'Đăng Ký'}
           </button>
