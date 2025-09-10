@@ -1,35 +1,12 @@
-// lib/api.ts
-import { apiClient } from '@/lib/api/apiClient';
-import {
-	CreateFacilityResponse,
-	FacilitiesResponse,
-	Facility,
-} from '@/types/admin';
+import { createApiClient } from '@/lib/api/authApiClient';
 
-// Fetch facilities with pagination
-export const getFacilities = async (
-	limit: number,
-	page: number
-): Promise<FacilitiesResponse> => {
-	const response = await apiClient.get('facilities', {
-		params: { limit, page },
-	});
-	return response.data;
-};
-
-// Create a new facility
-export const createFacility = async (
-	data: Omit<Facility, 'id'>
-): Promise<CreateFacilityResponse> => {
-	const response = await apiClient.post('facilities', data);
-	return response.data;
-};
-
-// Update a facility
-export const updateFacility = async (
-	id: number,
-	data: Facility
-): Promise<CreateFacilityResponse> => {
-	const response = await apiClient.put(`facilities/${id}`, data);
-	return response.data;
-};
+export async function fetchFacilities() {
+  try {
+    const api = createApiClient();
+    const response = await (await api).get('/admin/facilities');
+    return response.data.data;
+  } catch (error) {
+    console.error('Failed to fetch facilities:', error);
+    return [];
+  }
+}
