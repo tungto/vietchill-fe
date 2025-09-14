@@ -112,11 +112,12 @@ export const SimplePieChart: React.FC<SimplePieChartProps> = ({
               strokeWidth='20'
             />
             {data.map((item, index) => {
+              const coef = Math.PI * (size / 100);
               const percentage = total > 0 ? (item.value / total) * 100 : 0;
-              const strokeDasharray = `${percentage * 2.51327} ${
-                251.327 - percentage * 2.51327
+              const strokeDasharray = `${percentage * coef} ${
+                (100 - percentage) * coef
               }`;
-              const strokeDashoffset = -cumulativePercentage * 2.51327;
+              const strokeDashoffset = ((-cumulativePercentage * 8) / 9) * coef;
               const color = item.color || colors[index % colors.length];
 
               cumulativePercentage += percentage;

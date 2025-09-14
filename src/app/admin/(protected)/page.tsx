@@ -23,10 +23,6 @@ import {
   TbCircleCheck,
   TbConfetti,
   TbRefresh,
-  TbClipboardList,
-  TbMessageCircle,
-  TbHome,
-  TbStar,
   TbCoins,
 } from 'react-icons/tb';
 
@@ -82,118 +78,8 @@ interface RecentBookingItemProps {
   onStatusUpdate: (id: number, status: string) => void;
 }
 
-const RecentBookingItem: React.FC<RecentBookingItemProps> = ({
-  booking,
-  onStatusUpdate,
-}) => {
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'pending':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'confirmed':
-        return 'bg-blue-100 text-blue-800';
-      case 'completed':
-        return 'bg-green-100 text-green-800';
-      case 'cancelled':
-        return 'bg-red-100 text-red-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
-  };
-
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('vi-VN', {
-      style: 'currency',
-      currency: 'VND',
-    }).format(amount);
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('vi-VN');
-  };
-
-  return (
-    <div className='flex items-center justify-between p-4 border-b border-gray-200 hover:bg-gray-50'>
-      <div className='flex-1'>
-        <div className='flex items-center justify-between'>
-          <h4 className='font-medium text-gray-900'>
-            #{booking.id} - {booking.user.name}
-          </h4>
-          <span
-            className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(
-              booking.status,
-            )}`}
-          >
-            {booking.status}
-          </span>
-        </div>
-        <p className='text-sm text-gray-600'>{booking.room_type.name}</p>
-        <p className='text-sm text-gray-500'>
-          {formatDate(booking.check_in_date)} -{' '}
-          {formatDate(booking.check_out_date)}
-        </p>
-        <p className='text-sm font-medium text-gray-900'>
-          {formatCurrency(booking.total_price)}
-        </p>
-      </div>
-      {booking.status === 'pending' && (
-        <div className='flex gap-2 ml-4'>
-          <button
-            onClick={() => onStatusUpdate(booking.id, 'confirmed')}
-            className='px-3 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700'
-          >
-            Xác nhận
-          </button>
-          <button
-            onClick={() => onStatusUpdate(booking.id, 'cancelled')}
-            className='px-3 py-1 text-xs bg-red-600 text-white rounded hover:bg-red-700'
-          >
-            Hủy
-          </button>
-        </div>
-      )}
-    </div>
-  );
-};
-
-// Quick Action Button Component
-interface QuickActionProps {
-  title: string;
-  description: string;
-  icon: React.ComponentType<{ className?: string }>;
-  color: string;
-  onClick: () => void;
-}
-
-const QuickAction: React.FC<QuickActionProps> = ({
-  title,
-  description,
-  icon: Icon,
-  color,
-  onClick,
-}) => {
-  return (
-    <button
-      onClick={onClick}
-      className='p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 text-left w-full'
-      style={{ borderLeftColor: color }}
-    >
-      <div className='flex items-center'>
-        <div className='mr-3' style={{ color }}>
-          <Icon className='text-2xl' />
-        </div>
-        <div>
-          <h3 className='font-medium text-gray-900'>{title}</h3>
-          <p className='text-sm text-gray-600'>{description}</p>
-        </div>
-      </div>
-    </button>
-  );
-};
-
 export default function DashboardPage() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
-  const [recentBookings, setRecentBookings] = useState<RecentBooking[]>([]);
   const [bookingStatusData, setBookingStatusData] = useState<ChartDataPoint[]>(
     [],
   );
@@ -219,7 +105,6 @@ export default function DashboardPage() {
         ]);
 
       setStats(statsData);
-      setRecentBookings(bookingsData);
 
       // Transform status distribution for pie chart
       const statusColors = {
@@ -264,9 +149,6 @@ export default function DashboardPage() {
   ) => {
     try {
       await bookingsApi.updateBookingStatus(bookingId, status);
-      // Reload recent bookings
-      const updatedBookings = await dashboardApi.getRecentBookings(10);
-      setRecentBookings(updatedBookings);
       // Reload stats
       const updatedStats = await dashboardApi.getDashboardStats();
       setStats(updatedStats);
@@ -378,74 +260,6 @@ export default function DashboardPage() {
           icon={TbConfetti}
           color='#A855F7'
         />
-      </div>
-
-      {/* Main Content Grid */}
-      <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
-        {/* Recent Bookings */}
-        <div className='lg:col-span-2'>
-          <div className='bg-white rounded-lg shadow-md'>
-            <div className='px-6 py-4 border-b border-gray-200'>
-              <h2 className='text-lg font-semibold text-gray-900'>
-                Đặt phòng gần đây
-              </h2>
-            </div>
-            <div className='max-h-96 overflow-y-auto'>
-              {recentBookings.length > 0 ? (
-                recentBookings.map((booking) => (
-                  <RecentBookingItem
-                    key={booking.id}
-                    booking={booking}
-                    onStatusUpdate={handleBookingStatusUpdate}
-                  />
-                ))
-              ) : (
-                <div className='p-6 text-center text-gray-500'>
-                  Không có đặt phòng nào gần đây
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Quick Actions */}
-        <div className='space-y-4'>
-          <h2 className='text-lg font-semibold text-gray-900'>
-            Thao tác nhanh
-          </h2>
-
-          <QuickAction
-            title='Quản lý đặt phòng'
-            description='Xem và quản lý tất cả đặt phòng'
-            icon={TbClipboardList}
-            color='#3B82F6'
-            onClick={() => (window.location.href = '/admin/bookings')}
-          />
-
-          <QuickAction
-            title='Tin nhắn khách hàng'
-            description={`${stats?.unreadQueries || 0} tin nhắn chưa đọc`}
-            icon={TbMessageCircle}
-            color='#EF4444'
-            onClick={() => (window.location.href = '/admin/user-queries')}
-          />
-
-          <QuickAction
-            title='Quản lý phòng'
-            description='Thêm, sửa, xóa phòng'
-            icon={TbHome}
-            color='#10B981'
-            onClick={() => (window.location.href = '/admin/rooms')}
-          />
-
-          <QuickAction
-            title='Tiện nghi & Không gian'
-            description='Quản lý tiện nghi và không gian'
-            icon={TbStar}
-            color='#F59E0B'
-            onClick={() => (window.location.href = '/admin/facilities')}
-          />
-        </div>
       </div>
 
       {/* Charts Section */}

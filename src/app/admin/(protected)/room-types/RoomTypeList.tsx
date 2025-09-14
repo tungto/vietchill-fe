@@ -218,7 +218,7 @@ const RoomTypeList: React.FC<RoomTypeListProps> = ({
                       <div className='text-sm font-medium text-gray-900'>
                         {roomType.name}
                       </div>
-                      <div className='text-sm text-gray-500 truncate max-w-xs'>
+                      <div className='text-sm text-gray-500 text-wrap max-w-full'>
                         {roomType.description}
                       </div>
                     </td>

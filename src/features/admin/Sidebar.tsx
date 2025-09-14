@@ -17,7 +17,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   return (
     <div className='flex w-full min-h-screen'>
       {/* Sidebar */}
-      <aside className='sticky top-0 flex flex-col w-64 h-screen p-4 text-white bg-gray-900'>
+      <aside className='sticky top-0 flex flex-col min-w-64 h-screen p-4 text-white bg-gray-900'>
         <h1 className='mb-6 text-xl font-bold'>VietStay</h1>
 
         <nav className='flex flex-col gap-5'>
@@ -59,15 +59,6 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
             </div>
           </details>
 
-          <Link
-            href='/admin/user-queries'
-            className={`rounded px-3 py-2 transition-colors duration-200 ${getLinkClass(
-              pathname,
-              '/admin/user-queries',
-            )}`}
-          >
-            Tin nhắn
-          </Link>
           <Link
             href='/admin/room-types'
             className={`rounded px-3 py-2 transition-colors duration-200 ${getLinkClass(
@@ -112,6 +103,15 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
             )}`}
           >
             Quản lý hình ảnh
+          </Link>
+          <Link
+            href='/admin/user-queries'
+            className={`rounded px-3 py-2 transition-colors duration-200 ${getLinkClass(
+              pathname,
+              '/admin/user-queries',
+            )}`}
+          >
+            Tin nhắn
           </Link>
         </nav>
       </aside>

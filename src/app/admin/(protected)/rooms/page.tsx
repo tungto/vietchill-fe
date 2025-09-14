@@ -16,10 +16,5 @@ async function fetchRooms() {
 export default async function AdminRoomsPage() {
   const rooms = await fetchRooms();
 
-  return (
-    <div className='p-6'>
-      <h1 className='mb-6 text-2xl font-bold'>Room Management</h1>
-      <RoomTable rooms={rooms} />
-    </div>
-  );
+  return <RoomTable initialRooms={rooms} />;
 }
