@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { TbArrowLeft, TbEdit, TbLoader } from 'react-icons/tb';
-import EditRoomTypeForm from '../../EditRoomTypeForm';
-import { RoomType, fetchRoomType } from '../../api';
+import EditRoomTypeForm from '@/features/admin/room-types/components/EditRoomTypeForm';
+import { RoomType, fetchRoomType } from '@/features/admin/room-types/api/api';
 // Simple currency formatting function
 const formatCurrency = (amount: number): string => {
   return amount.toLocaleString('vi-VN');

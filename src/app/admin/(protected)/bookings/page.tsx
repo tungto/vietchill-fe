@@ -1,7 +1,7 @@
-import { createApiClient } from '@/lib/api/authApiClient';
+import { createApiClient } from '@/features/shared/api/authApiClient';
 import React from 'react';
-import BookingsList from './BookingsList';
-import { Booking } from '@/lib/api/admin';
+import { BookingsList } from '@/features/admin/bookings/components';
+import { Booking } from '@/features/admin/bookings/api';
 
 interface BookingsResponse {
   data: Booking[];

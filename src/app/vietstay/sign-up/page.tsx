@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import {
   FiMail,
   FiLock,
@@ -13,9 +12,9 @@ import {
   FiMapPin,
   FiCalendar,
 } from 'react-icons/fi';
-import FormInput from '@/features/auth/FormInput';
+import FormInput from '@/features/vietstay/auth/components/FormInput';
 import Link from 'next/link';
-import { useAuthActions } from '@/features/hooks/useAuthActions';
+import { useAuthActions } from '@/features/shared/hooks/useAuthActions';
 
 const registerSchema = yup.object({
   name: yup.string().required('Name is required'),

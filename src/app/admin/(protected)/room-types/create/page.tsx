@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { TbArrowLeft, TbPlus } from 'react-icons/tb';
-import CreateRoomTypeForm from '../CreateRoomTypeForm';
-import { RoomType } from '../api';
+import { RoomType } from '@/features/admin/room-types/api/api';
+import CreateRoomTypeForm from '@/features/admin/room-types/components/CreateRoomTypeForm';
 
 export default function CreateRoomTypePage() {
   const router = useRouter();

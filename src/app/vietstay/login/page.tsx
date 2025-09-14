@@ -1,13 +1,14 @@
 'use client';
 
-import FormInput from '@/features/auth/FormInput';
-import { useAuthActions } from '@/features/hooks/useAuthActions';
+import FormInput from '@/features/vietstay/auth/components/FormInput';
+import { useAuthActions } from '@/features/shared/hooks/useAuthActions';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiLock, FiMail } from 'react-icons/fi';
 import * as yup from 'yup';
+import { useRouter } from 'next/navigation';
 
 const loginSchema = yup.object().shape({
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -19,7 +20,7 @@ type LoginFormInputs = yup.InferType<typeof loginSchema>;
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [serverError, setServerError] = useState('');
-
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -35,6 +36,7 @@ export default function LoginPage() {
 
     try {
       await login(data.email, data.password);
+      router.refresh();
     } catch (err: unknown) {
       console.log(err);
       setServerError('Something went wrong. Please try again.');

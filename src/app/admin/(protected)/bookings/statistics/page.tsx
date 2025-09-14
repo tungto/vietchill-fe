@@ -1,4 +1,4 @@
-import { createApiClient } from '@/lib/api/authApiClient';
+import { createApiClient } from '@/features/shared/api/authApiClient';
 import React from 'react';
 import {
   TbCalendar,

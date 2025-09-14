@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
-import { createApiClient } from '@/lib/api/authApiClient';
-import EditRoomForm from './EditRoomForm';
+import { createApiClient } from '@/features/shared/api/authApiClient';
+import { EditRoomForm } from '@/features/admin/rooms/components';
 
 async function fetchRoom(id: string) {
   try {

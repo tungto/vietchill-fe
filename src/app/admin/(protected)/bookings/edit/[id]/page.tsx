@@ -1,7 +1,7 @@
-import { createApiClient } from '@/lib/api/authApiClient';
+import { createApiClient } from '@/features/shared/api/authApiClient';
 import React from 'react';
-import BookingUpdateForm from '../../BookingUpdateForm';
-import { BookingResponse } from '@/lib/api/admin';
+import BookingUpdateForm from '@/features/admin/bookings/components/BookingUpdateForm';
+import { BookingResponse } from '@/features/admin/bookings/api/bookingsApi';
 
 async function fetchBooking(id: string): Promise<BookingResponse | null> {
   try {

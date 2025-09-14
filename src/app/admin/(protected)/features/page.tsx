@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { TbPlus, TbList } from 'react-icons/tb';
-import FeaturesList from './FeatureList';
-import CreateFeatureForm from './CreateFeatureForm';
-import { fetchFeatures, Feature } from './api';
+import FeaturesList from '@/features/admin/features/components/FeatureList';
+import CreateFeatureForm from '@/features/admin/features/components/CreateFeatureForm';
+import { fetchFeatures, Feature } from '@/features/admin/features/api/api';
 
 export default function FeaturesPage() {
   const [features, setFeatures] = useState<Feature[]>([]);

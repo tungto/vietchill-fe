@@ -5,13 +5,13 @@ import {
   dashboardApi,
   DashboardStats,
   RecentBooking,
-} from '@/lib/api/admin/dashboardApi';
-import { bookingsApi } from '@/lib/api/admin/bookingsApi';
+} from '@/features/admin/dashboard/api';
+import { bookingsApi } from '@/features/admin/bookings/api';
 import {
   SimpleBarChart,
   SimplePieChart,
   ChartDataPoint,
-} from '@/components/admin/SimpleChart';
+} from '@/features/admin/dashboard/components/SimpleChart';
 import {
   TbDashboard,
   TbHourglass,

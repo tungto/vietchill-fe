@@ -1,7 +1,7 @@
-import { Booking } from '@/types/vietstay/booking';
+import { Booking } from '@/features/vietstay/booking/types/booking';
 import { cookies } from 'next/headers';
 import axios from 'axios';
-import BookingCard from './BookingCard';
+import { BookingsList } from '@/features/vietstay/booking/components';
 
 async function getBookings(): Promise<Booking[]> {
   const cookieStore = cookies();
@@ -17,7 +17,7 @@ async function getBookings(): Promise<Booking[]> {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }
+    },
   );
 
   const json = response.data;
@@ -36,37 +36,10 @@ export default async function BookingsPage() {
     bookings = await getBookings();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
-    return (
-      <div className='p-6 max-w-5xl mx-auto mt-16'>
-        <h1 className='text-3xl font-bold mb-6'>Lịch sử đặt phòng</h1>
-        <p className='text-red-600'>
-          Lỗi khi tải lịch sử đặt phòng: {error.message}
-        </p>
-      </div>
-    );
+    console.error('Failed to load initial bookings:', error);
+    // Pass empty array to let client component handle the error
+    bookings = [];
   }
 
-  if (bookings.length === 0) {
-    return (
-      <div className='p-6 max-w-5xl mx-auto mt-16'>
-        <h1 className='text-3xl font-bold mb-6'>Lịch sử đặt phòng</h1>
-        <p className='text-gray-500'>Không có đơn đặt phòng nào.</p>
-      </div>
-    );
-  }
-
-  return (
-    <div className='min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8'>
-      <div className='max-w-5xl mx-auto'>
-        <h1 className='text-3xl font-bold mb-10 text-gray-900'>
-          Lịch sử đặt phòng
-        </h1>
-        <ul className='space-y-8'>
-          {bookings.map((booking) => (
-            <BookingCard key={booking.id} booking={booking} />
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
+  return <BookingsList initialBookings={bookings} />;
 }

@@ -1,6 +1,5 @@
-import BookingForm from '@/features/booking-confirm/BookingForm';
-import RoomCard from '@/features/booking-confirm/RoomCard';
-import { getRoomData } from '@/lib/api/room';
+import { getRoomData } from '@/features/vietstay/rooms/api/room';
+import { BookingForm, RoomCard } from '@/features/vietstay/booking/components';
 
 export default async function BookingConfirmPage({
   searchParams,
@@ -10,7 +9,9 @@ export default async function BookingConfirmPage({
   try {
     const { id } = await searchParams;
     const room = await getRoomData(id ?? '');
-    const thumbnail = room.images.find((img) => img.is_thumbnail)?.path;
+    const thumbnail = room.images.find(
+      (img: { is_thumbnail: boolean }) => img.is_thumbnail,
+    )?.path;
 
     return (
       <div className='container mx-auto px-4 py-8 mt-16'>

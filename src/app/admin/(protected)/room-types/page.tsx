@@ -3,9 +3,11 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { TbPlus, TbList, TbRefresh } from 'react-icons/tb';
-import RoomTypeList from './RoomTypeList';
-import RoomTypeDetailModal from './RoomTypeDetailModal';
-import { fetchRoomTypes, RoomType } from './api';
+import {
+  RoomTypeList,
+  RoomTypeDetailModal,
+} from '@/features/admin/room-types/components';
+import { fetchRoomTypes, RoomType } from '@/features/admin/room-types/api';
 
 export default function RoomTypesPage() {
   const router = useRouter();

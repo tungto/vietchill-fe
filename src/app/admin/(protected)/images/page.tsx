@@ -2,9 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { TbUpload, TbPhoto, TbRefresh } from 'react-icons/tb';
-import ImageUpload from './ImageUpload';
-import ImageGallery from './ImageGallery';
-import { fetchImages, ImageFile, UploadImageResponse } from './api';
+import ImageUpload from '@/features/admin/images/components/ImageUpload';
+import ImageGallery from '@/features/admin/images/components/ImageGallery';
+import {
+  fetchImages,
+  ImageFile,
+  UploadImageResponse,
+} from '@/features/admin/images/api/api';
 
 export default function ImagesPage() {
   const [images, setImages] = useState<ImageFile[]>([]);

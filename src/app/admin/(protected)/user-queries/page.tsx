@@ -1,14 +1,17 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { queriesApi, Query, QueryStatistics } from '@/lib/api/admin/queriesApi';
+import {
+  queriesApi,
+  Query,
+  QueryStatistics,
+} from '@/features/admin/user-queries/api/queriesApi';
 import {
   TbMail,
   TbMailOpened,
   TbTrash,
   TbEye,
   TbSearch,
-  TbFilter,
   TbRefresh,
   TbCheck,
   TbX,
@@ -388,7 +391,6 @@ export default function UserQueriesPage() {
                         <div className='text-sm text-gray-900 font-medium mb-1'>
                           {query.subject}
                         </div>
-                        {getCategoryBadge(query.category)}
                       </td>
                       <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
                         {new Date(query.created_at).toLocaleString('vi-VN')}
@@ -577,17 +579,6 @@ export default function UserQueriesPage() {
                     {selectedQuery.subject}
                   </p>
                 </div>
-
-                {selectedQuery.category && (
-                  <div>
-                    <label className='block text-sm font-medium text-gray-700'>
-                      Danh mục
-                    </label>
-                    <div className='mt-1'>
-                      {getCategoryBadge(selectedQuery.category)}
-                    </div>
-                  </div>
-                )}
 
                 <div>
                   <label className='block text-sm font-medium text-gray-700'>

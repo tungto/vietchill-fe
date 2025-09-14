@@ -2,7 +2,10 @@
 
 import { useState } from 'react';
 import { FiPhone, FiMail, FiMapPin, FiSend, FiCheck } from 'react-icons/fi';
-import { userQueriesApi, CreateQueryData } from '@/lib/api/userQueriesApi';
+import {
+  userQueriesApi,
+  CreateQueryData,
+} from '@/features/vietstay/contact/api/userQueriesApi';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState<CreateQueryData>({

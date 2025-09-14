@@ -1,4 +1,4 @@
-import { apiClient } from '@/lib/api/apiClient';
+import { apiClient } from '@/features/shared/api/apiClient';
 
 export interface RoomImage {
   id: number;

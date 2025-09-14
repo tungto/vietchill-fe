@@ -1,10 +1,9 @@
-import Banner from '@/features/home/Banner';
-import BookingForm from '@/features/home/BookingForm/BookingForm';
-import Facilities from '@/features/home/Facilities/HomepageFacilities';
-import HomeSection from '@/features/home/HomeSection/HomeSection';
-import RoomTypes from '@/features/home/RoomTypes/RoomTypes';
-import StayInspired from '@/features/home/StayInspired';
-import Testimonials from '@/features/home/Testimonial/Testimonials';
+import Banner from '@/features/vietstay/rooms/components/Banner';
+import BookingForm from '@/features/vietstay/rooms/components/BookingForm/BookingForm';
+import Facilities from '@/features/vietstay/rooms/components/Facilities/HomepageFacilities';
+import HomeSection from '@/features/vietstay/rooms/components/HomeSection/HomeSection';
+import RoomTypes from '@/features/vietstay/rooms/components/RoomTypes/RoomTypes';
+import Testimonials from '@/features/vietstay/rooms/components/Testimonial/Testimonials';
 import { Box } from '@mui/material';
 
 export default function Home() {
@@ -35,10 +34,6 @@ export default function Home() {
         cl='bg-slate-50'
       >
         <Testimonials />
-      </HomeSection>
-
-      <HomeSection>
-        <StayInspired />
       </HomeSection>
     </Box>
   );

@@ -1,10 +1,10 @@
 // app/room/[id]/page.tsx
-import { getRoomData } from '@/lib/api/room';
-import Breadcrumb from '@/features/common/Breadcrumb';
-import RoomGallery from '@/features/roomDetail/RoomGallery';
-import RoomHeader from '@/features/roomDetail/RoomHeader';
-import RoomBody from '@/features/roomDetail/RoomBody';
-import RoomSidebar from '@/features/roomDetail/RoomSidebar';
+import { getRoomData } from '@/features/vietstay/rooms/api/room';
+import Breadcrumb from '@/features/shared/components/Breadcrumb';
+import RoomGallery from '@/features/vietstay/rooms/components/RoomGallery';
+import RoomHeader from '@/features/vietstay/rooms/components/RoomHeader';
+import RoomBody from '@/features/vietstay/rooms/components/RoomBody';
+import RoomSidebar from '@/features/vietstay/rooms/components/RoomSidebar';
 
 export default async function RoomPage({
   params,

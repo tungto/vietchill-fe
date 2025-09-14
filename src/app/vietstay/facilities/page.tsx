@@ -1,6 +1,7 @@
-import { getFacilities } from '@/lib/api/facilities';
-import { coloredIconMap } from '@/lib/iconMap';
+import { getFacilities } from '@/features/vietstay/rooms/api/facilities';
+import { coloredIconMap } from '@/features/shared/utils/iconMap';
 import { FaCheck, FaHotel, FaStar } from 'react-icons/fa';
+import Link from 'next/link';
 
 const FacilitiesPage = async () => {
   const facilities = await getFacilities();
@@ -116,9 +117,12 @@ const FacilitiesPage = async () => {
               <button className='bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-xl transition-colors duration-300 shadow-lg hover:shadow-xl'>
                 Liên hệ Lễ tân
               </button>
-              <button className='border-2 border-white text-white hover:bg-white hover:text-gray-900 font-semibold py-3 px-8 rounded-xl transition-colors duration-300'>
+              <Link
+                href='/vietstay/rooms'
+                className='border-2 border-white text-white hover:bg-white hover:text-gray-900 font-semibold py-3 px-8 rounded-xl transition-colors duration-300'
+              >
                 Xem loại phòng
-              </button>
+              </Link>
             </div>
           </div>
         </div>

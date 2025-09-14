@@ -1,6 +1,6 @@
-import { requireAuth } from '@/lib/api/authGuard';
+import { requireAuth } from '@/features/shared/api/authGuard';
 import { redirect } from 'next/navigation';
-import Sidebar from '../../../features/admin/Sidebar';
+import { Sidebar } from '@/features/admin/dashboard/components';
 
 // Define the props for Layout component
 interface LayoutProps {

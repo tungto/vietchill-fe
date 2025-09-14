@@ -1,6 +1,6 @@
 // app/admin/rooms/page.tsx (Next.js 13+ App Router)
-import RoomTable from '@/features/admin/rooms/RoomTable';
-import { createApiClient } from '@/lib/api/authApiClient';
+import { RoomTable } from '@/features/admin/rooms/components';
+import { createApiClient } from '@/features/shared/api/authApiClient';
 
 async function fetchRooms() {
   try {

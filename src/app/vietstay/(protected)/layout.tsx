@@ -1,6 +1,6 @@
 import React from 'react';
 import { redirect } from 'next/navigation';
-import { requireAuth } from '@/lib/api/authGuard';
+import { requireAuth } from '@/features/shared/api/authGuard';
 
 export default async function ProtectedLayout({
   children,

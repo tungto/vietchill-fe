@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { TbPlus, TbList } from 'react-icons/tb';
-import FacilitiesList from './FacilityList';
-import CreateFacilityForm from './CreateFacilityForm';
-import { fetchFacilities, Facility } from './api';
+import FacilitiesList from '@/features/admin/facilities/components/FacilityList';
+import CreateFacilityForm from '@/features/admin/facilities/components/CreateFacilityForm';
+import { fetchFacilities, Facility } from '@/features/admin/facilities/api/api';
 
 export default function FacilitiesPage() {
   const [facilities, setFacilities] = useState<Facility[]>([]);
