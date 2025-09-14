@@ -2,32 +2,37 @@
 
 import React, { useState } from 'react';
 import {
-  HiPencilAlt,
-  HiTrash,
-  HiCheck,
-  HiX,
-  HiPlus,
-  HiChevronLeft,
-  HiChevronRight,
-} from 'react-icons/hi';
-
-type Feature = {
-  id: number;
-  name: string;
-  content: string;
-};
+  TbEdit,
+  TbTrash,
+  TbCheck,
+  TbX,
+  TbChevronLeft,
+  TbChevronRight,
+} from 'react-icons/tb';
+import {
+  Feature,
+  updateFeature,
+  deleteFeature,
+  UpdateFeatureData,
+} from './api';
 
 type FeaturesListProps = {
   features: Feature[];
+  onDataChange: () => void;
 };
 
 const ITEMS_PER_PAGE = 10;
 
-const FeaturesList: React.FC<FeaturesListProps> = ({ features }) => {
+const FeaturesList: React.FC<FeaturesListProps> = ({
+  features,
+  onDataChange,
+}) => {
   const [data, setData] = useState<Feature[]>(features);
   const [editId, setEditId] = useState<number | null>(null);
   const [form, setForm] = useState<Partial<Feature>>({});
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
 
@@ -45,44 +50,72 @@ const FeaturesList: React.FC<FeaturesListProps> = ({ features }) => {
     setForm({});
   };
 
-  const saveEdit = () => {
+  const saveEdit = async () => {
     if (!form.name || !form.content) {
-      alert('Please fill all fields');
+      alert('Vui lòng điền đầy đủ thông tin');
       return;
     }
-    setData((prev) =>
-      prev.map((f) =>
-        f.id === editId ? ({ ...f, ...form, id: editId! } as Feature) : f,
-      ),
-    );
-    setEditId(null);
-    setForm({});
-  };
 
-  const deleteFeature = (id: number) => {
-    if (confirm('Are you sure you want to delete this feature?')) {
-      setData((prev) => prev.filter((f) => f.id !== id));
-      if (editId === id) cancelEdit();
-      // Adjust pagination if last item on last page removed
-      const newTotalPages = Math.ceil((data.length - 1) / ITEMS_PER_PAGE);
-      if (currentPage > newTotalPages) setCurrentPage(newTotalPages);
+    if (!editId) return;
+
+    try {
+      setLoading(true);
+      setError(null);
+
+      const updateData: UpdateFeatureData = {
+        name: form.name,
+        content: form.content,
+      };
+
+      await updateFeature(editId, updateData);
+
+      // Update local state
+      setData((prev) =>
+        prev.map((f) =>
+          f.id === editId ? ({ ...f, ...form, id: editId! } as Feature) : f,
+        ),
+      );
+
+      setEditId(null);
+      setForm({});
+      onDataChange(); // Refresh data from parent
+    } catch (err) {
+      setError('Không thể cập nhật không gian');
+      console.error('Error updating feature:', err);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const addNew = () => {
-    if (!form.name || !form.content) {
-      alert('Please fill all fields');
-      return;
+  const handleDeleteFeature = async (id: number) => {
+    if (confirm('Bạn có chắc chắn muốn xóa không gian này?')) {
+      try {
+        setLoading(true);
+        setError(null);
+
+        await deleteFeature(id);
+
+        // Update local state
+        setData((prev) => prev.filter((f) => f.id !== id));
+        if (editId === id) cancelEdit();
+
+        // Adjust pagination if last item on last page removed
+        const newTotalPages = Math.ceil((data.length - 1) / ITEMS_PER_PAGE);
+        if (currentPage > newTotalPages && newTotalPages > 0) {
+          setCurrentPage(newTotalPages);
+        }
+
+        onDataChange(); // Refresh data from parent
+      } catch (err) {
+        setError('Không thể xóa không gian');
+        console.error('Error deleting feature:', err);
+      } finally {
+        setLoading(false);
+      }
     }
-    const newFeature: Feature = {
-      id: data.length ? Math.max(...data.map((f) => f.id)) + 1 : 1,
-      name: form.name,
-      content: form.content,
-    };
-    setData((prev) => [...prev, newFeature]);
-    setForm({});
-    setCurrentPage(totalPages); // Go to last page to show new item
   };
+
+  // Remove the inline add functionality since we have a dedicated form
 
   // Pagination slicing
   const paginatedData = data.slice(
@@ -90,175 +123,178 @@ const FeaturesList: React.FC<FeaturesListProps> = ({ features }) => {
     currentPage * ITEMS_PER_PAGE,
   );
 
+  // Update data when features prop changes
+  React.useEffect(() => {
+    setData(features);
+  }, [features]);
+
   return (
-    <div className='p-6 overflow-x-auto bg-white rounded-lg shadow-md'>
-      <table className='min-w-full border border-collapse border-gray-300 table-auto'>
-        <thead className='sticky top-0 z-10 bg-indigo-100'>
-          <tr>
-            <th className='px-4 py-2 text-left border border-gray-300'>ID</th>
-            <th className='px-4 py-2 text-left border border-gray-300'>Name</th>
-            <th className='px-4 py-2 text-left border border-gray-300'>
-              Content
-            </th>
-            <th
-              className='px-4 py-2 text-center border border-gray-300'
-              style={{ width: '110px' }}
-            >
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody className='overflow-y-auto max-h-96'>
-          {paginatedData.map((feature) => (
-            <tr
-              key={feature.id}
-              className={
-                editId === feature.id ? 'bg-yellow-50' : 'even:bg-gray-50'
-              }
-            >
-              <td className='px-4 py-2 align-top border border-gray-300'>
-                {feature.id}
-              </td>
-              <td className='px-4 py-2 align-top border border-gray-300'>
-                {editId === feature.id ? (
-                  <input
-                    type='text'
-                    name='name'
-                    value={form.name || ''}
-                    onChange={handleChange}
-                    className='w-full px-2 py-1 border border-gray-300 rounded'
-                  />
-                ) : (
-                  feature.name
-                )}
-              </td>
-              <td className='px-4 py-2 align-top border border-gray-300'>
-                {editId === feature.id ? (
-                  <input
-                    type='text'
-                    name='content'
-                    value={form.content || ''}
-                    onChange={handleChange}
-                    className='w-full px-2 py-1 border border-gray-300 rounded'
-                  />
-                ) : (
-                  feature.content
-                )}
-              </td>
-              <td className='px-4 py-2 space-x-2 text-center align-top border border-gray-300'>
-                {editId === feature.id ? (
-                  <>
-                    <button
-                      onClick={saveEdit}
-                      className='text-green-600 hover:text-green-800'
-                      aria-label='Save'
-                      title='Save'
-                    >
-                      <HiCheck size={20} />
-                    </button>
-                    <button
-                      onClick={cancelEdit}
-                      className='text-gray-500 hover:text-gray-700'
-                      aria-label='Cancel'
-                      title='Cancel'
-                    >
-                      <HiX size={20} />
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      onClick={() => startEdit(feature)}
-                      className='text-blue-600 hover:text-blue-800'
-                      aria-label='Edit'
-                      title='Edit'
-                    >
-                      <HiPencilAlt size={20} />
-                    </button>
-                    <button
-                      onClick={() => deleteFeature(feature.id)}
-                      className='text-red-600 hover:text-red-800'
-                      aria-label='Delete'
-                      title='Delete'
-                    >
-                      <HiTrash size={20} />
-                    </button>
-                  </>
-                )}
-              </td>
-            </tr>
-          ))}
+    <div className='space-y-4'>
+      {/* Error Display */}
+      {error && (
+        <div className='bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded'>
+          {error}
+          <button
+            onClick={() => setError(null)}
+            className='ml-2 text-red-900 hover:text-red-700'
+          >
+            ✕
+          </button>
+        </div>
+      )}
 
-          {/* Add new feature row */}
-          <tr className='bg-green-50'>
-            <td className='px-4 py-2 text-center align-top border border-gray-300'>
-              New
-            </td>
-            <td className='px-4 py-2 align-top border border-gray-300'>
-              <input
-                type='text'
-                name='name'
-                value={form.name || ''}
-                onChange={handleChange}
-                placeholder='Name'
-                className='w-full px-2 py-1 border border-gray-300 rounded'
-              />
-            </td>
-            <td className='px-4 py-2 align-top border border-gray-300'>
-              <input
-                type='text'
-                name='content'
-                value={form.content || ''}
-                onChange={handleChange}
-                placeholder='Content'
-                className='w-full px-2 py-1 border border-gray-300 rounded'
-              />
-            </td>
-            <td className='px-4 py-2 text-center align-top border border-gray-300'>
-              <button
-                onClick={addNew}
-                className='text-green-700 hover:text-green-900'
-                aria-label='Add'
-                title='Add'
+      {/* Loading Overlay */}
+      {loading && (
+        <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'>
+          <div className='bg-white p-4 rounded-lg flex items-center space-x-2'>
+            <div className='animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600'></div>
+            <span>Đang xử lý...</span>
+          </div>
+        </div>
+      )}
+
+      <div className='p-6 overflow-x-auto bg-white rounded-lg shadow-md'>
+        <table className='min-w-full border border-collapse border-gray-300 table-auto'>
+          <thead className='sticky top-0 z-10 bg-indigo-100'>
+            <tr>
+              <th className='px-4 py-2 text-left border border-gray-300 font-semibold'>
+                ID
+              </th>
+              <th className='px-4 py-2 text-left border border-gray-300 font-semibold'>
+                Tên không gian
+              </th>
+              <th className='px-4 py-2 text-left border border-gray-300 font-semibold'>
+                Nội dung
+              </th>
+              <th
+                className='px-4 py-2 text-center border border-gray-300 font-semibold'
+                style={{ width: '110px' }}
               >
-                <HiPlus size={20} />
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                Thao tác
+              </th>
+            </tr>
+          </thead>
+          <tbody className='overflow-y-auto max-h-96'>
+            {paginatedData.map((feature) => (
+              <tr
+                key={feature.id}
+                className={
+                  editId === feature.id ? 'bg-yellow-50' : 'even:bg-gray-50'
+                }
+              >
+                <td className='px-4 py-2 align-top border border-gray-300'>
+                  {feature.id}
+                </td>
+                <td className='px-4 py-2 align-top border border-gray-300'>
+                  {editId === feature.id ? (
+                    <input
+                      type='text'
+                      name='name'
+                      value={form.name || ''}
+                      onChange={handleChange}
+                      placeholder='Nhập tên không gian'
+                      className='w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500'
+                    />
+                  ) : (
+                    feature.name
+                  )}
+                </td>
+                <td className='px-4 py-2 align-top border border-gray-300'>
+                  {editId === feature.id ? (
+                    <input
+                      type='text'
+                      name='content'
+                      value={form.content || ''}
+                      onChange={handleChange}
+                      placeholder='Nhập nội dung'
+                      className='w-full px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500'
+                    />
+                  ) : (
+                    feature.content
+                  )}
+                </td>
+                <td className='px-4 py-2 space-x-2 text-center align-top border border-gray-300'>
+                  {editId === feature.id ? (
+                    <>
+                      <button
+                        onClick={saveEdit}
+                        className='text-green-600 hover:text-green-800'
+                        aria-label='Save'
+                        title='Save'
+                        disabled={loading}
+                      >
+                        <TbCheck size={20} />
+                      </button>
+                      <button
+                        onClick={cancelEdit}
+                        className='text-gray-500 hover:text-gray-700'
+                        aria-label='Cancel'
+                        title='Cancel'
+                        disabled={loading}
+                      >
+                        <TbX size={20} />
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => startEdit(feature)}
+                        className='text-blue-600 hover:text-blue-800'
+                        aria-label='Edit'
+                        title='Edit'
+                        disabled={loading}
+                      >
+                        <TbEdit size={20} />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteFeature(feature.id)}
+                        className='text-red-600 hover:text-red-800'
+                        aria-label='Delete'
+                        title='Delete'
+                        disabled={loading}
+                      >
+                        <TbTrash size={20} />
+                      </button>
+                    </>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
-      {/* Pagination controls */}
-      <div className='flex items-center justify-center mt-4 space-x-4 select-none'>
-        <button
-          onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-          disabled={currentPage === 1}
-          className={`p-2 rounded ${
-            currentPage === 1
-              ? 'text-gray-400 cursor-not-allowed'
-              : 'text-indigo-600 hover:text-indigo-800'
-          }`}
-          aria-label='Previous page'
-          title='Previous page'
-        >
-          <HiChevronLeft size={24} />
-        </button>
-        <span className='font-medium text-gray-700'>
-          Page {currentPage} of {totalPages || 1}
-        </span>
-        <button
-          onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-          disabled={currentPage === totalPages}
-          className={`p-2 rounded ${
-            currentPage === totalPages
-              ? 'text-gray-400 cursor-not-allowed'
-              : 'text-indigo-600 hover:text-indigo-800'
-          }`}
-          aria-label='Next page'
-          title='Next page'
-        >
-          <HiChevronRight size={24} />
-        </button>
+        {/* Pagination controls */}
+        <div className='flex items-center justify-center mt-4 space-x-4 select-none'>
+          <button
+            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+            className={`p-2 rounded ${
+              currentPage === 1
+                ? 'text-gray-400 cursor-not-allowed'
+                : 'text-indigo-600 hover:text-indigo-800'
+            }`}
+            aria-label='Previous page'
+            title='Previous page'
+          >
+            <TbChevronLeft size={24} />
+          </button>
+          <span className='font-medium text-gray-700'>
+            Trang {currentPage} / {totalPages || 1}
+          </span>
+          <button
+            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+            disabled={currentPage === totalPages}
+            className={`p-2 rounded ${
+              currentPage === totalPages
+                ? 'text-gray-400 cursor-not-allowed'
+                : 'text-indigo-600 hover:text-indigo-800'
+            }`}
+            aria-label='Next page'
+            title='Next page'
+          >
+            <TbChevronRight size={24} />
+          </button>
+        </div>
       </div>
     </div>
   );

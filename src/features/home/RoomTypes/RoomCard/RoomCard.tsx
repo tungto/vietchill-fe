@@ -24,13 +24,19 @@ const RoomCard = ({
   facilities,
   id,
 }: RoomCardProps) => {
+  const thumbnail = images.find((img) => img.is_thumbnail)?.path;
+
   return (
     <div className='relative w-full max-w-sm sm:max-w-md md:max-w-lg rounded-2xl overflow-hidden bg-white text-gray-700 shadow-lg hover:shadow-xl transition-shadow duration-300'>
       {/* Image Section */}
       <Link className='relative block' href={`/vietstay/rooms/${id}`}>
         <div className='relative w-full aspect-[16/10] overflow-hidden rounded-t-2xl rounded-b-none'>
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_URL}/${images[0].path}`}
+            src={
+              thumbnail
+                ? `${process.env.NEXT_PUBLIC_BASE_URL}/${thumbnail}`
+                : '/images/rooms/placeholder.png'
+            }
             alt={name}
             fill
             className='object-cover transition-transform duration-500 hover:scale-105'

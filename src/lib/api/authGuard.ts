@@ -3,24 +3,22 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 export async function requireAuth(): Promise<GetProfileResponse> {
-	const token = (await cookies()).get('auth_token')?.value;
+  const token = (await cookies()).get('auth_token')?.value;
 
-	console.log('token', token);
+  if (!token) {
+    redirect('/vietstay/login');
+  }
 
-	if (!token) {
-		redirect('/vietstay/login');
-	}
+  const res = await fetch('http://localhost:8000/api/auth/profile', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    cache: 'no-store', // avoid caching auth check
+  });
 
-	const res = await fetch('http://localhost:8000/api/auth/profile', {
-		headers: {
-			Authorization: `Bearer ${token}`,
-		},
-		cache: 'no-store', // avoid caching auth check
-	});
+  if (!res.ok) {
+    redirect('/vietstay/login');
+  }
 
-	if (!res.ok) {
-		redirect('/vietstay/login');
-	}
-
-	return res.json(); // profile object
+  return res.json(); // profile object
 }

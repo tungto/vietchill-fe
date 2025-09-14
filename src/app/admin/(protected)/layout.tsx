@@ -10,8 +10,6 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = async ({ children }) => {
   const profile = await requireAuth();
 
-  console.log(profile, profile.data.role);
-
   if (!profile || profile.data.role !== 'admin') {
     // If somehow unauthenticated here (edge case), redirect to login
     redirect('/admin/login');

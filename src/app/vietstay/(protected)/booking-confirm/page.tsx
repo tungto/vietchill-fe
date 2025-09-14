@@ -10,6 +10,7 @@ export default async function BookingConfirmPage({
   try {
     const { id } = await searchParams;
     const room = await getRoomData(id ?? '');
+    const thumbnail = room.images.find((img) => img.is_thumbnail)?.path;
 
     return (
       <div className='container mx-auto px-4 py-8 mt-16'>
@@ -20,7 +21,11 @@ export default async function BookingConfirmPage({
           <RoomCard
             name={room.name}
             price={room.price}
-            imageUrl={`${process.env.NEXT_PUBLIC_BASE_URL}/${room.images[0].path}`}
+            imageUrl={
+              thumbnail
+                ? `${process.env.NEXT_PUBLIC_BASE_URL}/${thumbnail}`
+                : '/images/rooms/placeholder.png'
+            }
           />
           <BookingForm room={room} />
         </div>

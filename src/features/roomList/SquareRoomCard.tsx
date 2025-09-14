@@ -7,6 +7,8 @@ import FacilityChip from '../common/FacilityChip';
 import Rating from '../common/Rating';
 
 export default function SquareRoomCard({ room }: { room: RoomType }) {
+  const thumbnail = room.images.find((img) => img.is_thumbnail)?.path;
+
   return (
     <article className='max-w-4xl mx-auto bg-transparent p-6 md:p-10'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-start'>
@@ -17,7 +19,11 @@ export default function SquareRoomCard({ room }: { room: RoomType }) {
             className='relative w-full h-72 md:h-96 bg-gray-100 block'
           >
             <Image
-              src={`${process.env.NEXT_PUBLIC_BASE_URL}/${room.images[0].path}`}
+              src={
+                thumbnail
+                  ? `${process.env.NEXT_PUBLIC_BASE_URL}/${thumbnail}`
+                  : '/images/rooms/placeholder.png'
+              }
               alt={room.name}
               fill
               sizes='(max-width: 768px) 100vw, 50vw'

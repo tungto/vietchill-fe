@@ -35,32 +35,23 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
           {/* Bookings Link (with a dropdown) */}
           <details className='group'>
             <summary className='py-2 transition-all duration-200 cursor-pointer hover:text-blue-400'>
-              Bookings
+              Quản lý đặt phòng
             </summary>
             <div className='flex flex-col gap-2 ml-3 text-sm'>
               <Link
-                href='/admin/bookings/new'
+                href='/admin/bookings'
                 className={`rounded px-3 py-2 transition-colors duration-200 ${getLinkClass(
                   pathname,
-                  '/admin/bookings/new',
+                  '/admin/bookings',
                 )}`}
               >
-                Lượt đặt phòng mới
+                Danh sách đặt phòng
               </Link>
               <Link
-                href='/admin/bookings/refunds'
+                href='/admin/bookings/statistics'
                 className={`rounded px-3 py-2 transition-colors duration-200 ${getLinkClass(
                   pathname,
-                  '/admin/bookings/refunds',
-                )}`}
-              >
-                Yêu cầu hoàn tiền
-              </Link>
-              <Link
-                href='/admin/bookings/stats'
-                className={`rounded px-3 py-2 transition-colors duration-200 ${getLinkClass(
-                  pathname,
-                  '/admin/bookings/stats',
+                  '/admin/bookings/statistics',
                 )}`}
               >
                 Thống kê đặt phòng
@@ -68,16 +59,6 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
             </div>
           </details>
 
-          {/* Other Links */}
-          <Link
-            href='/admin/users'
-            className={`rounded px-3 py-2 transition-colors duration-200 ${getLinkClass(
-              pathname,
-              '/admin/users',
-            )}`}
-          >
-            Người dùng
-          </Link>
           <Link
             href='/admin/user-queries'
             className={`rounded px-3 py-2 transition-colors duration-200 ${getLinkClass(
@@ -88,13 +69,13 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
             Tin nhắn
           </Link>
           <Link
-            href='/admin/reviews'
+            href='/admin/room-types'
             className={`rounded px-3 py-2 transition-colors duration-200 ${getLinkClass(
               pathname,
-              '/admin/reviews',
+              '/admin/room-types',
             )}`}
           >
-            Đánh giá
+            Danh sách loại phòng
           </Link>
           <Link
             href='/admin/rooms'
@@ -124,13 +105,13 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
             Tiện Nghi
           </Link>
           <Link
-            href='/admin/settings'
+            href='/admin/images'
             className={`rounded px-3 py-2 transition-colors duration-200 ${getLinkClass(
               pathname,
-              '/admin/settings',
+              '/admin/images',
             )}`}
           >
-            Cài đặt trang
+            Quản lý hình ảnh
           </Link>
         </nav>
       </aside>

@@ -6,8 +6,6 @@ export async function createApiClient() {
   const cookieStore = cookies();
   const token = (await cookieStore).get('auth_token');
 
-  console.log('token====', token);
-
   if (!token) {
     throw new Error('No auth token found');
   } // change 'token' to your cookie key

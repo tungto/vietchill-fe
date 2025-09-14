@@ -1,12 +1,11 @@
 import Image from 'next/image';
-import { Divider } from '@mui/material';
 import { Booking } from '@/types/vietstay/booking';
 import BookingStatusBadge from './BookingStatusBadge';
 
 export default function BookingCard({ booking }: { booking: Booking }) {
-  const thumbnail =
-    booking.room_type.images.find((img) => img.is_thumbnail)?.path ||
-    'placeholder.png';
+  const thumbnail = booking.room_type.images.find(
+    (img) => img.is_thumbnail,
+  )?.path;
 
   const checkIn = new Date(booking.check_in_date).toLocaleDateString('vi-VN');
   const checkOut = new Date(booking.check_out_date).toLocaleDateString('vi-VN');
@@ -21,7 +20,11 @@ export default function BookingCard({ booking }: { booking: Booking }) {
     <li className='flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300'>
       <div className='relative w-full md:w-1/3 aspect-[4/3] flex-shrink-0'>
         <Image
-          src={`${process.env.NEXT_PUBLIC_BASE_URL}/${thumbnail}`}
+          src={
+            thumbnail
+              ? `${process.env.NEXT_PUBLIC_BASE_URL}/${thumbnail}`
+              : '/images/rooms/placeholder.png'
+          }
           alt={booking.room_type.name}
           fill
           className='object-cover'

@@ -2,36 +2,32 @@
 
 import React, { useState } from 'react';
 import { TbPlus, TbLoader } from 'react-icons/tb';
-import { createFacility, CreateFacilityData, Facility } from './api';
+import { createFeature, CreateFeatureData, Feature } from './api';
 
-interface CreateFacilityFormProps {
-  onSuccess?: (facility: Facility) => void;
+interface CreateFeatureFormProps {
+  onSuccess?: (feature: Feature) => void;
   onError?: (error: string) => void;
 }
 
-const CreateFacilityForm: React.FC<CreateFacilityFormProps> = ({
+const CreateFeatureForm: React.FC<CreateFeatureFormProps> = ({
   onSuccess,
   onError,
 }) => {
-  const [formData, setFormData] = useState<CreateFacilityData>({
+  const [formData, setFormData] = useState<CreateFeatureData>({
     name: '',
     content: '',
-    description: '',
   });
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<Partial<CreateFacilityData>>({});
+  const [errors, setErrors] = useState<Partial<CreateFeatureData>>({});
 
   const validateForm = (): boolean => {
-    const newErrors: Partial<CreateFacilityData> = {};
+    const newErrors: Partial<CreateFeatureData> = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Tên tiện nghi là bắt buộc';
+      newErrors.name = 'Tên không gian là bắt buộc';
     }
     if (!formData.content.trim()) {
       newErrors.content = 'Nội dung là bắt buộc';
-    }
-    if (!formData.description.trim()) {
-      newErrors.description = 'Mô tả là bắt buộc';
     }
 
     setErrors(newErrors);
@@ -47,27 +43,24 @@ const CreateFacilityForm: React.FC<CreateFacilityFormProps> = ({
 
     try {
       setLoading(true);
-      const newFacility = await createFacility(formData);
+      const newFeature = await createFeature(formData);
 
-      if (newFacility) {
+      if (newFeature) {
         // Reset form
-        setFormData({ name: '', content: '', description: '' });
+        setFormData({ name: '', content: '' });
         setErrors({});
-        onSuccess?.(newFacility);
+        onSuccess?.(newFeature);
       }
     } catch (error) {
       const errorMessage =
-        error instanceof Error ? error.message : 'Không thể tạo tiện nghi mới';
+        error instanceof Error ? error.message : 'Không thể tạo không gian mới';
       onError?.(errorMessage);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleInputChange = (
-    field: keyof CreateFacilityData,
-    value: string,
-  ) => {
+  const handleInputChange = (field: keyof CreateFeatureData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     // Clear error when user starts typing
     if (errors[field]) {
@@ -79,7 +72,9 @@ const CreateFacilityForm: React.FC<CreateFacilityFormProps> = ({
     <div className='bg-white rounded-lg shadow-md p-6'>
       <div className='flex items-center gap-2 mb-6'>
         <TbPlus className='text-2xl text-blue-600' />
-        <h2 className='text-2xl font-bold text-gray-900'>Thêm tiện nghi mới</h2>
+        <h2 className='text-2xl font-bold text-gray-900'>
+          Thêm không gian mới
+        </h2>
       </div>
 
       <form onSubmit={handleSubmit} className='space-y-4'>
@@ -89,12 +84,12 @@ const CreateFacilityForm: React.FC<CreateFacilityFormProps> = ({
             htmlFor='name'
             className='block text-sm font-medium text-gray-700 mb-1'
           >
-            Tên tiện nghi *
+            Tên không gian *
           </label>
           <input
             id='name'
             type='text'
-            placeholder='Nhập tên tiện nghi'
+            placeholder='Nhập tên không gian'
             value={formData.name}
             onChange={(e) => handleInputChange('name', e.target.value)}
             className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
@@ -118,7 +113,7 @@ const CreateFacilityForm: React.FC<CreateFacilityFormProps> = ({
           <input
             id='content'
             type='text'
-            placeholder='Nhập nội dung tiện nghi'
+            placeholder='Nhập nội dung không gian'
             value={formData.content}
             onChange={(e) => handleInputChange('content', e.target.value)}
             className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
@@ -128,30 +123,6 @@ const CreateFacilityForm: React.FC<CreateFacilityFormProps> = ({
           />
           {errors.content && (
             <p className='mt-1 text-sm text-red-600'>{errors.content}</p>
-          )}
-        </div>
-
-        {/* Description Field */}
-        <div>
-          <label
-            htmlFor='description'
-            className='block text-sm font-medium text-gray-700 mb-1'
-          >
-            Mô tả *
-          </label>
-          <textarea
-            id='description'
-            placeholder='Nhập mô tả chi tiết về tiện nghi'
-            value={formData.description}
-            onChange={(e) => handleInputChange('description', e.target.value)}
-            rows={4}
-            className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none ${
-              errors.description ? 'border-red-500' : 'border-gray-300'
-            }`}
-            disabled={loading}
-          />
-          {errors.description && (
-            <p className='mt-1 text-sm text-red-600'>{errors.description}</p>
           )}
         </div>
 
@@ -169,7 +140,7 @@ const CreateFacilityForm: React.FC<CreateFacilityFormProps> = ({
           ) : (
             <>
               <TbPlus />
-              Tạo tiện nghi
+              Tạo không gian
             </>
           )}
         </button>
@@ -178,4 +149,4 @@ const CreateFacilityForm: React.FC<CreateFacilityFormProps> = ({
   );
 };
 
-export default CreateFacilityForm;
+export default CreateFeatureForm;
