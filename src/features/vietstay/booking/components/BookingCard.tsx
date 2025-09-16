@@ -154,7 +154,7 @@ export default function BookingCard({
 
       {/* Cancel Confirmation Modal */}
       {showCancelConfirm && (
-        <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50'>
+        <div className='fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50'>
           <div className='bg-white rounded-lg shadow-xl max-w-md w-full p-6'>
             <div className='flex items-center gap-3 mb-4'>
               <div className='flex-shrink-0 w-10 h-10 bg-red-100 rounded-full flex items-center justify-center'>

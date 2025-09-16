@@ -170,7 +170,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
 
       {/* Loading Overlay */}
       {loading && (
-        <div className='fixed inset-0 bg-black/20 flex items-center justify-center z-50'>
+        <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50'>
           <div className='bg-white p-4 rounded-lg flex items-center space-x-2'>
             <div className='animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600'></div>
             <span>Đang xử lý...</span>
@@ -320,11 +320,11 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
 
       {/* Image Preview Modal */}
       {selectedImage && (
-        <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4'>
+        <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4'>
           <div className='relative max-w-4xl max-h-full'>
             <button
               onClick={() => setSelectedImage(null)}
-              className='absolute top-4 right-4 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75 transition-colors z-10'
+              className='absolute top-4 right-4 bg-black/50 text-white rounded-full p-2 hover:bg-opacity-75 transition-colors z-10'
             >
               <TbX size={20} />
             </button>
@@ -340,7 +340,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
             />
 
             {/* Image Info */}
-            <div className='absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white p-4 rounded-b-lg'>
+            <div className='absolute bottom-0 left-0 right-0 bg-black/50 text-white p-4 rounded-b-lg'>
               <h3 className='font-medium mb-2'>
                 {selectedImage.filename || selectedImage.path.split('/').pop()}
               </h3>

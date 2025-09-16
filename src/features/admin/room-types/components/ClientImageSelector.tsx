@@ -296,7 +296,7 @@ const ClientImageSelector: React.FC<ClientImageSelectorProps> = ({
 
       {/* Loading Overlay */}
       {loading && (
-        <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'>
+        <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50'>
           <div className='bg-white p-4 rounded-lg flex items-center space-x-2'>
             <TbLoader className='animate-spin h-6 w-6 text-blue-600' />
             <span>Đang tải lên...</span>
@@ -431,7 +431,7 @@ const ClientImageSelector: React.FC<ClientImageSelectorProps> = ({
                       e.stopPropagation();
                       handleViewImage(image);
                     }}
-                    className='absolute bottom-1 right-1 p-1 bg-black bg-opacity-50 text-white rounded hover:bg-opacity-75'
+                    className='absolute bottom-1 right-1 p-1 bg-black/50 text-white rounded hover:bg-opacity-75'
                     title='Xem chi tiết'
                   >
                     <TbEye size={12} />
@@ -491,12 +491,12 @@ const ClientImageSelector: React.FC<ClientImageSelectorProps> = ({
 
       {/* Image Preview Modal */}
       {selectedImage && (
-        <div className='fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4'>
+        <div className='fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4'>
           <div className='relative max-w-4xl max-h-full'>
             <button
               type='button'
               onClick={() => setSelectedImage(null)}
-              className='absolute top-4 right-4 bg-black bg-opacity-50 text-white rounded-full p-2 hover:bg-opacity-75 transition-colors z-10'
+              className='absolute top-4 right-4 bg-black/50 text-white rounded-full p-2 hover:bg-opacity-75 transition-colors z-10'
             >
               <TbX size={20} />
             </button>
@@ -514,7 +514,7 @@ const ClientImageSelector: React.FC<ClientImageSelectorProps> = ({
             />
 
             {/* Image Info */}
-            <div className='absolute bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white p-4 rounded-b-lg'>
+            <div className='absolute bottom-0 left-0 right-0 bg-black/50 text-white p-4 rounded-b-lg'>
               <div className='flex items-center justify-between'>
                 <div>
                   <h3 className='font-medium mb-1'>
