@@ -76,7 +76,7 @@ const FacilitiesPage = async () => {
                       {coloredIconMap[facility.name] ? (
                         coloredIconMap[facility.name]
                       ) : (
-                        <span className='w-8 h-8 bg-gray-200 rounded-full' />
+                        <FaStar className='w-8 h-8 text-yellow-500 rounded-full' />
                       )}
                     </div>
                     <h3 className='text-xl font-bold text-gray-900 ml-4'>

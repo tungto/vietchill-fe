@@ -5,6 +5,7 @@ import {
 import { RoomFeature } from '@/features/vietstay/rooms/types/room';
 import { RoomFacility } from '@/features/vietstay/rooms/types/facility';
 import React from 'react';
+import { FaStar } from 'react-icons/fa';
 
 type FacilityCardProps = {
   facility: RoomFeature | RoomFacility;
@@ -21,7 +22,7 @@ export default function FacilityChip({
         {simple
           ? simpleIconsMap[facility.name]
           : coloredMiniIconMap[facility.name] ?? (
-              <span className='w-5 h-5 bg-gray-200 rounded-full inline-block' />
+              <FaStar className='w-4 h-4 text-gray-500 inline-block' />
             )}
       </div>
       <span className='text-sm text-gray-800'>{facility.content}</span>

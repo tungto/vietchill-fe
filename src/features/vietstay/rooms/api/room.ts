@@ -1,12 +1,11 @@
-// lib/api/room.ts
-import { RoomType } from '@/types/vietstay/room';
+import { RoomType } from '../types/room';
 
 export async function getRoomData(id: string): Promise<RoomType> {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/room-types/${id}`,
     {
       cache: 'no-store',
-    }
+    },
   );
 
   if (!res.ok) {

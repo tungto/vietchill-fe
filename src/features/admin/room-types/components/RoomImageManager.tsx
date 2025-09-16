@@ -264,7 +264,7 @@ const RoomImageManager: React.FC<RoomImageManagerProps> = ({
 
       {/* Loading Overlay */}
       {loading && (
-        <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'>
+        <div className='fixed inset-0 bg-black/20 flex items-center justify-center z-50'>
           <div className='bg-white p-4 rounded-lg flex items-center space-x-2'>
             <TbLoader className='animate-spin h-6 w-6 text-blue-600' />
             <span>Đang xử lý...</span>

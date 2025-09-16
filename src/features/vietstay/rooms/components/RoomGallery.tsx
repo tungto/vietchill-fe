@@ -1,7 +1,7 @@
 'use client';
-import { ImageItem } from '@/types/vietstay/room';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { ImageItem } from '../types/room';
 
 type Props = {
   images: ImageItem[];

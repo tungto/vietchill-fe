@@ -16,9 +16,7 @@ export default function RootLayout({
   return (
     <>
       <Navbar />
-      <main>
-        <Box className='min-h-[70vh]'>{children}</Box>
-      </main>
+      <main className='pt-12'>{children}</main>
       <Footer />
     </>
   );

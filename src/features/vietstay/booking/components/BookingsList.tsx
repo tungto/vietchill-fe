@@ -5,6 +5,7 @@ import { Booking } from '@/features/vietstay/booking/types/booking';
 import { userBookingsApi } from '@/features/vietstay/booking/api';
 import BookingCard from './BookingCard';
 import { TbRefresh, TbAlertCircle } from 'react-icons/tb';
+import Link from 'next/link';
 
 interface BookingsListProps {
   initialBookings?: Booking[];
@@ -129,12 +130,12 @@ export default function BookingsList({
               Bạn chưa có đơn đặt phòng nào. Hãy khám phá các phòng của chúng
               tôi!
             </p>
-            <a
+            <Link
               href='/vietstay/rooms'
               className='inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors'
             >
               Xem phòng có sẵn
-            </a>
+            </Link>
           </div>
         </div>
       </div>

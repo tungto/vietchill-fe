@@ -1,5 +1,5 @@
-import { Booking } from '@/lib/api/admin/bookingsApi';
 import { Room } from '@/features/admin/rooms/types';
+import { Booking } from '../api';
 
 export interface BookingFormData {
   status: Booking['status'];

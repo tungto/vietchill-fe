@@ -1,6 +1,6 @@
-import { RoomsApi } from '@/lib/api/admin/roomsApi';
 import React, { useState } from 'react';
-import { Room } from '../admin/rooms/type';
+import { RoomsApi } from '@/features/admin/rooms/api';
+import { Room } from '@/features/admin/rooms/types';
 
 const useRoomTable = ({ rooms }: { rooms: Room[] }) => {
   const client = new RoomsApi();

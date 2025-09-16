@@ -38,7 +38,7 @@ export function useAuthActions() {
       setUser(profile);
 
       if (profile.role === 'user') {
-        router.refresh();
+        router.push('/vietstay/rooms');
       } else {
         router.push('/admin');
       }

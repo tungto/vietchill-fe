@@ -11,6 +11,7 @@ import {
   TbCalendar,
   TbUser,
   TbCurrencyDong,
+  TbRefresh,
 } from 'react-icons/tb';
 import {
   bookingsApi,
@@ -197,6 +198,14 @@ export default function BookingsList({
             className='px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors'
           >
             Xóa bộ lọc
+          </button>
+
+          <button
+            onClick={() => loadBookings()}
+            className='flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50'
+          >
+            <TbRefresh className='h-4 w-4' />
+            Làm mới
           </button>
         </div>
       </div>

@@ -10,7 +10,7 @@ import {
   TbPhone,
   TbMail,
 } from 'react-icons/tb';
-import { Booking } from '@/lib/api/admin/bookingsApi';
+import { Booking } from '../api';
 
 interface BookingDetailModalProps {
   booking: Booking;
@@ -252,7 +252,7 @@ export default function BookingDetailModal({
                     booking.is_paid ? 'text-green-600' : 'text-red-600'
                   }`}
                 >
-                  {booking.is_paid ? 'Paid' : 'Unpaid'}
+                  {booking.is_paid ? 'Đã thanh toán' : 'Chưa thanh toán'}
                 </p>
               </div>
             </div>

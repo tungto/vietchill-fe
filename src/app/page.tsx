@@ -30,7 +30,7 @@ export default function Home() {
       <HomeSection
         title='Khách Hàng Nói Gì Về Chúng Tôi'
         subtitle='Khám phá lý do vì sao những du khách sành điệu luôn tin tưởng lựa chọn VietStay cho các kỳ nghỉ sang trọng và độc quyền trên khắp thế giới.'
-        cta={{ label: 'Xem thêm', href: '/vietstay/facilities' }}
+        cta={{ label: 'Xem thêm', href: '/vietstay/about' }}
         cl='bg-slate-50'
       >
         <Testimonials />

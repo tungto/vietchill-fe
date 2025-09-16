@@ -81,29 +81,3 @@ export const simpleIconsMap: Record<string, JSX.Element> = {
   'double-bed': <MdOutlineKingBed />,
   'interconnecting-room': <MdOutlineBedroomParent />,
 };
-
-// export const simpleFeatureIcons: Record<string, JSX.Element> = {
-// 	bedroom: <MdOutlineBedroomParent />,
-// 	balcony: <MdOutlineBalcony />,
-// 	kitchen: <MdOutlineKitchen />,
-// 	'garden-view': <MdOutlineLandscape />,
-// 	'lake-view': <MdOutlineLandscape />,
-// 	'forest-view': <MdOutlineLandscape />,
-// 	'city-view': <MdOutlineHolidayVillage />,
-// 	'single-bed': <MdOutlineKingBed />,
-// 	'double-bed': <MdOutlineKingBed />,
-// 	'interconnecting-room': <MdOutlineBedroomParent />,
-// };
-
-// const facilityIconMap: Record<string, React.ReactNode> = {
-// 	wifi: <FiWifi size={18} />,
-// 	conditioner: <MdOutlineAcUnit size={18} />,
-// 	tv: <FiTv size={18} />,
-// 	desk: <FiCoffee size={18} />,
-// 	heater: <FiSun size={18} />,
-// 	'water-heater': <GiAlarmClock size={18} />,
-// 	safe: <FiShield size={18} />,
-// 	fridge: <BiFridge size={18} />,
-// 	kettle: <GiTeapot size={18} />,
-// 	minibar: <MdKitchen size={18} />,
-// };

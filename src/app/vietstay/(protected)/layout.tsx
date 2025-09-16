@@ -14,12 +14,5 @@ export default async function ProtectedLayout({
     redirect('/vietstay/login');
   }
 
-  return (
-    <div>
-      <header className='p-4 bg-gray-100 border-b'>
-        <p>Chào mừng, {profile.data.name}</p>
-      </header>
-      <main>{children}</main>
-    </div>
-  );
+  return <main>{children}</main>;
 }
