@@ -77,7 +77,7 @@ export default function PaymentStatusSection({
             onChange={(e) =>
               setFormData((prev) => ({
                 ...prev,
-                status: e.target.value as any,
+                status: e.target.value as typeof formData.status,
               }))
             }
             className='w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent'

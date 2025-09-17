@@ -6,6 +6,7 @@ import {
   uploadImage,
   UploadImageResponse,
 } from '@/features/admin/images/api/api';
+import Image from 'next/image';
 
 interface ImageUploadProps {
   onSuccess?: (uploadedImage: UploadImageResponse) => void;
@@ -170,7 +171,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
         <div className='space-y-4'>
           {/* Preview */}
           <div className='relative'>
-            <img
+            <Image
+              fill
               src={preview || ''}
               alt='Preview'
               className='w-full max-w-md mx-auto rounded-lg shadow-md'

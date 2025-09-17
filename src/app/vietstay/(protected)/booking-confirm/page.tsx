@@ -4,7 +4,7 @@ import { BookingForm, RoomCard } from '@/features/vietstay/booking/components';
 export default async function BookingConfirmPage({
   searchParams,
 }: {
-  searchParams: { id?: string };
+  searchParams: Promise<{ id: string }>;
 }) {
   try {
     const { id } = await searchParams;

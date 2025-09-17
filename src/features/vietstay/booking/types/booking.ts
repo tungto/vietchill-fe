@@ -8,10 +8,7 @@ export type Booking = {
   children: number;
   total_price: number;
   created_at: string;
-  review?: {
-    rating: number;
-    review: string;
-  } | null;
+  is_paid: boolean;
   room_type: {
     name: string;
     images: { path: string; is_thumbnail: boolean }[];

@@ -76,7 +76,7 @@ export class DashboardApi {
       ).length;
 
       const totalRevenue = bookings
-        .filter((b: Booking) => b.status === 'completed')
+        .filter((b: Booking) => b.is_paid && b.status === 'completed')
         .reduce((sum: number, b: Booking) => sum + (b.total_price || 0), 0);
 
       const totalRooms = rooms.length;
@@ -96,6 +96,7 @@ export class DashboardApi {
           (b: Booking) =>
             b.created_at &&
             b.created_at.startsWith(today) &&
+            b.is_paid &&
             b.status === 'completed',
         )
         .reduce((sum: number, b: Booking) => sum + (b.total_price || 0), 0);
@@ -221,7 +222,7 @@ export class DashboardApi {
   ): Promise<{ name: string; bookings: number; revenue: number }[]> {
     try {
       const response = await apiClient.get('/admin/bookings?limit=1000');
-      const bookings = response.data.data || [];
+      const bookings = (response.data.data || []) as Booking[];
 
       const roomTypeStats = bookings.reduce(
         (

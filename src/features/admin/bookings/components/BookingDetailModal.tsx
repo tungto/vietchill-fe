@@ -11,6 +11,7 @@ import {
   TbMail,
 } from 'react-icons/tb';
 import { Booking } from '../api';
+import Image from 'next/image';
 
 interface BookingDetailModalProps {
   booking: Booking;
@@ -21,7 +22,6 @@ interface BookingDetailModalProps {
 export default function BookingDetailModal({
   booking,
   onClose,
-  onUpdate,
 }: BookingDetailModalProps) {
   const formatCurrency = (amount: number) => {
     return amount.toLocaleString('vi-VN');
@@ -265,12 +265,14 @@ export default function BookingDetailModal({
                 Hình ảnh phòng
               </h3>
               <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
-                {booking.room_type.images.slice(0, 6).map((image, index) => (
+                {booking.room_type.images.slice(0, 6).map((image) => (
                   <div key={image.id} className='relative'>
-                    <img
+                    <Image
                       src={`http://localhost:8000/${image.path}`}
                       alt={`Room ${booking.room_type.name}`}
                       className='w-full h-24 object-cover rounded-lg'
+                      width={200}
+                      height={200}
                     />
                     {image.is_thumbnail && (
                       <div className='absolute top-1 right-1 bg-blue-500 text-white text-xs px-2 py-1 rounded'>

@@ -15,11 +15,9 @@ async function fetchBooking(id: string): Promise<BookingResponse | null> {
   }
 }
 
-interface BookingEditPageProps {
-  params: {
-    id: string;
-  };
-}
+type BookingEditPageProps = {
+  params: Promise<{ id: string }>;
+};
 
 export default async function BookingEditPage({
   params,

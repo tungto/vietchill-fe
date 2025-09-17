@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { TbPlus, TbLoader, TbX } from 'react-icons/tb';
+import React, { useState, useEffect, useCallback } from 'react';
+import { TbPlus, TbLoader } from 'react-icons/tb';
 import {
   createRoomType,
   CreateRoomTypeData,
@@ -43,11 +43,7 @@ const CreateRoomTypeForm: React.FC<CreateRoomTypeFormProps> = ({
   const [facilities, setFacilities] = useState<Facility[]>([]);
   const [features, setFeatures] = useState<Feature[]>([]);
 
-  useEffect(() => {
-    loadInitialData();
-  }, []);
-
-  const loadInitialData = async () => {
+  const loadInitialData = useCallback(async () => {
     try {
       setLoadingData(true);
       const [facilitiesData, featuresData] = await Promise.all([
@@ -62,7 +58,11 @@ const CreateRoomTypeForm: React.FC<CreateRoomTypeFormProps> = ({
     } finally {
       setLoadingData(false);
     }
-  };
+  }, [onError]);
+
+  useEffect(() => {
+    loadInitialData();
+  }, [loadInitialData]);
 
   const validateForm = (): boolean => {
     const newErrors: Partial<Record<keyof CreateRoomTypeData, string>> = {};
@@ -137,7 +137,10 @@ const CreateRoomTypeForm: React.FC<CreateRoomTypeFormProps> = ({
     }
   };
 
-  const handleInputChange = (field: keyof CreateRoomTypeData, value: any) => {
+  const handleInputChange = (
+    field: keyof CreateRoomTypeData,
+    value: unknown,
+  ) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
     // Clear error when user starts typing
     if (errors[field]) {

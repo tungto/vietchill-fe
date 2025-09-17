@@ -1,12 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import {
-  dashboardApi,
-  DashboardStats,
-  RecentBooking,
-} from '@/features/admin/dashboard/api';
-import { bookingsApi } from '@/features/admin/bookings/api';
+import { dashboardApi, DashboardStats } from '@/features/admin/dashboard/api';
 import {
   SimpleBarChart,
   SimplePieChart,
@@ -72,12 +67,6 @@ const StatCard: React.FC<StatCardProps> = ({
   );
 };
 
-// Recent Booking Item Component
-interface RecentBookingItemProps {
-  booking: RecentBooking;
-  onStatusUpdate: (id: number, status: string) => void;
-}
-
 export default function DashboardPage() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [bookingStatusData, setBookingStatusData] = useState<ChartDataPoint[]>(
@@ -96,13 +85,11 @@ export default function DashboardPage() {
       setLoading(true);
       setError(null);
 
-      const [statsData, bookingsData, statusDistribution, roomTypesData] =
-        await Promise.all([
-          dashboardApi.getDashboardStats(),
-          dashboardApi.getRecentBookings(10),
-          dashboardApi.getBookingStatusDistribution(),
-          dashboardApi.getTopRoomTypes(5),
-        ]);
+      const [statsData, statusDistribution, roomTypesData] = await Promise.all([
+        dashboardApi.getDashboardStats(),
+        dashboardApi.getBookingStatusDistribution(),
+        dashboardApi.getTopRoomTypes(5),
+      ]);
 
       setStats(statsData);
 
@@ -140,20 +127,6 @@ export default function DashboardPage() {
       console.error('Dashboard loading error:', err);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleBookingStatusUpdate = async (
-    bookingId: number,
-    status: string,
-  ) => {
-    try {
-      await bookingsApi.updateBookingStatus(bookingId, status);
-      // Reload stats
-      const updatedStats = await dashboardApi.getDashboardStats();
-      setStats(updatedStats);
-    } catch (err) {
-      console.error('Failed to update booking status:', err);
     }
   };
 

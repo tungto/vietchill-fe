@@ -329,7 +329,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
               <TbX size={20} />
             </button>
 
-            <img
+            <Image
+              fill
               src={ImagesApi.getImageUrl(selectedImage.path)}
               alt={selectedImage.filename || selectedImage.path}
               className='max-w-full max-h-full object-contain rounded-lg'

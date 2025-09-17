@@ -62,6 +62,7 @@ export default function ContactPage() {
         subject: '',
         message: '',
       });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error('Failed to submit query:', error);
       setError(

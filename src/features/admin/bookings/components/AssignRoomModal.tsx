@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { TbX, TbHome, TbLoader } from 'react-icons/tb';
 import {
   Booking,
@@ -35,11 +35,7 @@ export default function AssignRoomModal({
   const [error, setError] = useState<string | null>(null);
   const [selectedRoomId, setSelectedRoomId] = useState<number | null>(null);
 
-  useEffect(() => {
-    loadAvailableRooms();
-  }, []);
-
-  const loadAvailableRooms = async () => {
+  const loadAvailableRooms = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -55,7 +51,11 @@ export default function AssignRoomModal({
     } finally {
       setLoading(false);
     }
-  };
+  }, [booking]);
+
+  useEffect(() => {
+    loadAvailableRooms();
+  }, [loadAvailableRooms]);
 
   const handleAssignRoom = async () => {
     if (!selectedRoomId) return;

@@ -1,5 +1,5 @@
 import { apiClient } from '@/features/shared/api/apiClient';
-import { Booking, BookingsResponse } from '../types/booking';
+import { Booking } from '../types/booking';
 
 const USER_BOOKINGS_ROUTE = '/user/bookings';
 

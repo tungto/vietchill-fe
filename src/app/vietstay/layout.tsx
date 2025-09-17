@@ -1,6 +1,5 @@
 import Footer from '@/features/shared/components/layout/Footer/Footer';
 import Navbar from '@/features/shared/components/layout/Navbar/Navbar';
-import { Box } from '@mui/material';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

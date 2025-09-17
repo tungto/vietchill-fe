@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { TbEdit, TbLoader, TbX } from 'react-icons/tb';
+import { TbEdit, TbLoader } from 'react-icons/tb';
 import {
   updateRoomType,
   UpdateRoomTypeData,
@@ -12,10 +12,6 @@ import {
   fetchAllFeatures,
 } from '@/features/admin/room-types/api/api';
 import ClientImageSelector from './ClientImageSelector';
-import {
-  RoomImage,
-  fetchRoomImagesByRoomType,
-} from '@/features/admin/room-types/api/roomImagesApi';
 import { validateImagePaths } from '@/features/admin/room-types/api/roomImageSync';
 
 interface EditRoomTypeFormProps {
@@ -53,7 +49,6 @@ const EditRoomTypeForm: React.FC<EditRoomTypeFormProps> = ({
   >({});
   const [facilities, setFacilities] = useState<Facility[]>([]);
   const [features, setFeatures] = useState<Feature[]>([]);
-  const [currentRoomImages, setCurrentRoomImages] = useState<RoomImage[]>([]);
   const [loadingImages, setLoadingImages] = useState(true);
 
   useEffect(() => {
@@ -64,14 +59,12 @@ const EditRoomTypeForm: React.FC<EditRoomTypeFormProps> = ({
     try {
       setLoadingData(true);
       setLoadingImages(true);
-      const [facilitiesData, featuresData, roomImagesData] = await Promise.all([
+      const [facilitiesData, featuresData] = await Promise.all([
         fetchAllFacilities(),
         fetchAllFeatures(),
-        fetchRoomImagesByRoomType(roomType.id),
       ]);
       setFacilities(facilitiesData);
       setFeatures(featuresData);
-      setCurrentRoomImages(roomImagesData);
     } catch (error) {
       console.error('Failed to load initial data:', error);
       onError?.('Không thể tải dữ liệu ban đầu');

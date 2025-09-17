@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   queriesApi,
   Query,
@@ -44,30 +44,33 @@ export default function UserQueriesPage() {
   const [filterRead, setFilterRead] = useState<boolean | undefined>(undefined);
   const [selectedQuery, setSelectedQuery] = useState<Query | null>(null);
 
-  const loadQueries = async (page = 1) => {
-    setLoading(true);
-    try {
-      const filters = {
-        page,
-        limit: pagination.limit,
-        search: searchTerm || undefined,
-        is_read: filterRead,
-      };
+  const loadQueries = useCallback(
+    async (page = 1) => {
+      setLoading(true);
+      try {
+        const filters = {
+          page,
+          limit: pagination.limit,
+          search: searchTerm || undefined,
+          is_read: filterRead,
+        };
 
-      const response = await queriesApi.getQueries(filters);
-      setQueries(response.data);
-      setStatistics(response.statistics);
-      setPagination(response.pagination);
-    } catch (error) {
-      console.error('Failed to load queries:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+        const response = await queriesApi.getQueries(filters);
+        setQueries(response.data);
+        setStatistics(response.statistics);
+        setPagination(response.pagination);
+      } catch (error) {
+        console.error('Failed to load queries:', error);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [filterRead, pagination.limit, searchTerm],
+  );
 
   useEffect(() => {
     loadQueries();
-  }, [searchTerm, filterRead]);
+  }, [loadQueries]);
 
   const handleMarkAsRead = async (queryId: number, isRead: boolean) => {
     try {
@@ -130,36 +133,6 @@ export default function UserQueriesPage() {
   const toggleSelectAll = () => {
     setSelectedQueries(
       selectedQueries.length === queries.length ? [] : queries.map((q) => q.id),
-    );
-  };
-
-  const getCategoryBadge = (category?: string) => {
-    if (!category) return null;
-
-    const colors = {
-      booking: 'bg-blue-100 text-blue-800',
-      facilities: 'bg-green-100 text-green-800',
-      support: 'bg-yellow-100 text-yellow-800',
-      feedback: 'bg-purple-100 text-purple-800',
-      other: 'bg-gray-100 text-gray-800',
-    };
-
-    const names = {
-      booking: 'Đặt phòng',
-      facilities: 'Tiện nghi',
-      support: 'Hỗ trợ',
-      feedback: 'Phản hồi',
-      other: 'Khác',
-    };
-
-    return (
-      <span
-        className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-          colors[category as keyof typeof colors] || colors.other
-        }`}
-      >
-        {names[category as keyof typeof names] || category}
-      </span>
     );
   };
 

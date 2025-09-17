@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   TbX,
   TbHome,
@@ -35,13 +35,7 @@ const RoomTypeDetailModal: React.FC<RoomTypeDetailModalProps> = ({
   const [loadingImages, setLoadingImages] = useState(false);
   const [selectedImage, setSelectedImage] = useState<RoomImage | null>(null);
 
-  useEffect(() => {
-    if (isOpen && roomType.id) {
-      loadRoomImages();
-    }
-  }, [isOpen, roomType.id]);
-
-  const loadRoomImages = async () => {
+  const loadRoomImages = useCallback(async () => {
     try {
       setLoadingImages(true);
       const images = await fetchRoomImagesByRoomType(roomType.id);
@@ -51,7 +45,13 @@ const RoomTypeDetailModal: React.FC<RoomTypeDetailModalProps> = ({
     } finally {
       setLoadingImages(false);
     }
-  };
+  }, [roomType]);
+
+  useEffect(() => {
+    if (isOpen && roomType.id) {
+      loadRoomImages();
+    }
+  }, [isOpen, roomType.id, loadRoomImages]);
 
   if (!isOpen) return null;
 
