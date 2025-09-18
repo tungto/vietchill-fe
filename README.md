@@ -26,4 +26,6 @@ This is a frontend pages for a hotel booking system built with Nextjs 15. The pa
 1. Clone the repository
 2. Run `npm install`
 3. Copy `.env.example` to `.env`
-4. Start the frontend: `npm run dev`
+4. Ensure the server is running
+5. Build the frontend: `npm run build`
+6. Start the frontend: `npm run start`

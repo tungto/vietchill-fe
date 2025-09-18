@@ -1,7 +1,9 @@
 import { RoomTypesResponse } from '../types/room';
 
 export async function getRoomsData(): Promise<RoomTypesResponse> {
-  const res = await fetch('http://localhost:8000/api/room-types');
+  const res = await fetch('http://localhost:8000/api/room-types', {
+    cache: 'no-store',
+  });
 
   if (!res.ok) {
     console.error('Failed to fetch room data:', res.statusText);

@@ -1,19 +1,6 @@
-import { fetchRoomTypes } from '@/features/admin/room-types/api';
 import { CreateRoomForm } from '@/features/admin/rooms/components';
 
-async function fetchAllRoomTypes() {
-  try {
-    const response = await fetchRoomTypes(1, 1000); // Get all room types
-    return response.data;
-  } catch (error) {
-    console.error('Failed to fetch room types:', error);
-    return [];
-  }
-}
-
 export default async function CreateRoomPage() {
-  const roomTypes = await fetchAllRoomTypes();
-
   return (
     <div className='min-h-screen p-6 bg-gray-50'>
       <div className='max-w-4xl mx-auto'>
@@ -26,7 +13,7 @@ export default async function CreateRoomPage() {
           </p>
         </div>
 
-        <CreateRoomForm roomTypes={roomTypes} />
+        <CreateRoomForm />
       </div>
     </div>
   );

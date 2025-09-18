@@ -22,8 +22,6 @@ const Navbar: React.FC = () => {
   const scrolled = useScrollState(isHome);
   useBodyLock(mobileOpen);
 
-  console.log('mobileOpen', mobileOpen);
-
   const isLoggedIn = !!user;
 
   return (
